@@ -45,9 +45,8 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		E9E8FF092F91446600CEA57C /* Models */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Models; sourceTree = "<group>"; };
-		E9E8FF0B2F921D7400CEA57C /* ViewModel */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = ViewModel; sourceTree = "<group>"; };
-		E9E8FF162F92975600CEA57C /* Views */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Views; sourceTree = "<group>"; };
+		E9E8FF0B2F921D7400CEA57C /* Domain */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Domain; sourceTree = "<group>"; };
+		E9E8FF162F92975600CEA57C /* Presentation */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Presentation; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,10 +98,9 @@
 		1A0E3A972862F7E200132FCB /* WallaMarvel */ = {
 			isa = PBXGroup;
 			children = (
-				E9E8FF162F92975600CEA57C /* Views */,
-				E9E8FF0B2F921D7400CEA57C /* ViewModel */,
-				E9E8FF092F91446600CEA57C /* Models */,
-				E9E8FF122F928DC700CEA57C /* WallaRobots.swift */,
+				E9E8FF162F92975600CEA57C /* Presentation */,
+				E9E8FF0B2F921D7400CEA57C /* Domain */,
+				E9E8FF1B2F92AF2100CEA57C /* App */,
 				1A0E3AA12862F7E300132FCB /* Assets.xcassets */,
 				1A0E3AA62862F7E300132FCB /* Info.plist */,
 			);
@@ -126,6 +124,14 @@
 			path = WallaMarvelUITests;
 			sourceTree = "<group>";
 		};
+		E9E8FF1B2F92AF2100CEA57C /* App */ = {
+			isa = PBXGroup;
+			children = (
+				E9E8FF122F928DC700CEA57C /* WallaRobots.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -142,9 +148,8 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				E9E8FF092F91446600CEA57C /* Models */,
-				E9E8FF0B2F921D7400CEA57C /* ViewModel */,
-				E9E8FF162F92975600CEA57C /* Views */,
+				E9E8FF0B2F921D7400CEA57C /* Domain */,
+				E9E8FF162F92975600CEA57C /* Presentation */,
 			);
 			name = WallaMarvel;
 			productName = WallaMarvel;
