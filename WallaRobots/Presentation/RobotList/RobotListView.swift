@@ -14,7 +14,7 @@ struct RobotListView: View {
         NavigationStack {
             List(viewModel.robots) { robot in
                 NavigationLink {
-                    RobotDetailView(name: robot.fullName)
+                    RobotDetailView(robot: robot)
                 } label: {
                     HStack {
 
