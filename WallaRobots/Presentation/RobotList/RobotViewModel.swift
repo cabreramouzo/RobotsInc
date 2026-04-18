@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 
 final class RobotViewModel: ObservableObject {
     @Published var robots: [Robot] = []

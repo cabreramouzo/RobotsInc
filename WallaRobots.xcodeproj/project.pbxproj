@@ -6,66 +6,61 @@
 	objectVersion = 70;
 	objects = {
 
-/* Begin PBXBuildFile section */
-		1A0E3AA22862F7E300132FCB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A0E3AA12862F7E300132FCB /* Assets.xcassets */; };
-		1A0E3AB02862F7E300132FCB /* WallaMarvelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0E3AAF2862F7E300132FCB /* WallaMarvelTests.swift */; };
-		1A0E3ABA2862F7E300132FCB /* WallaMarvelUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0E3AB92862F7E300132FCB /* WallaMarvelUITests.swift */; };
-		1A0E3ABC2862F7E300132FCB /* WallaMarvelUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0E3ABB2862F7E300132FCB /* WallaMarvelUITestsLaunchTests.swift */; };
-		A66389F32DCE202500466318 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = A66389F22DCE202500466318 /* Kingfisher */; };
-		E9E8FF132F928DD400CEA57C /* WallaRobots.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E8FF122F928DC700CEA57C /* WallaRobots.swift */; };
-/* End PBXBuildFile section */
-
 /* Begin PBXContainerItemProxy section */
-		1A0E3AAC2862F7E300132FCB /* PBXContainerItemProxy */ = {
+		E9E8FF3D2F92BD8700CEA57C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 1A0E3A8D2862F7E200132FCB /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 1A0E3A942862F7E200132FCB;
-			remoteInfo = WallaMarvel;
+			remoteGlobalIDString = E9E8FF2F2F92BD8600CEA57C;
+			remoteInfo = WallaRobots;
 		};
-		1A0E3AB62862F7E300132FCB /* PBXContainerItemProxy */ = {
+		E9E8FF472F92BD8800CEA57C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 1A0E3A8D2862F7E200132FCB /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 1A0E3A942862F7E200132FCB;
-			remoteInfo = WallaMarvel;
+			remoteGlobalIDString = E9E8FF2F2F92BD8600CEA57C;
+			remoteInfo = WallaRobots;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1A0E3A952862F7E200132FCB /* WallaMarvel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WallaMarvel.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		1A0E3AA12862F7E300132FCB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		1A0E3AA62862F7E300132FCB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1A0E3AAB2862F7E300132FCB /* WallaMarvelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WallaMarvelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		1A0E3AAF2862F7E300132FCB /* WallaMarvelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallaMarvelTests.swift; sourceTree = "<group>"; };
-		1A0E3AB52862F7E300132FCB /* WallaMarvelUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WallaMarvelUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		1A0E3AB92862F7E300132FCB /* WallaMarvelUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallaMarvelUITests.swift; sourceTree = "<group>"; };
-		1A0E3ABB2862F7E300132FCB /* WallaMarvelUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallaMarvelUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		E9E8FF122F928DC700CEA57C /* WallaRobots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallaRobots.swift; sourceTree = "<group>"; };
+		E9E8FF302F92BD8600CEA57C /* WallaRobots.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WallaRobots.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E9E8FF3C2F92BD8700CEA57C /* WallaRobotsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WallaRobotsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E9E8FF462F92BD8800CEA57C /* WallaRobotsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WallaRobotsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		E9E8FF762F936FBA00CEA57C /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = E9E8FF2F2F92BD8600CEA57C /* WallaRobots */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		E9E8FF0B2F921D7400CEA57C /* Domain */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Domain; sourceTree = "<group>"; };
-		E9E8FF162F92975600CEA57C /* Presentation */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Presentation; sourceTree = "<group>"; };
+		E9E8FF312F92BD8600CEA57C /* WallaRobots */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (E9E8FF762F936FBA00CEA57C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = WallaRobots; sourceTree = "<group>"; };
+		E9E8FF3F2F92BD8700CEA57C /* WallaRobotsTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = WallaRobotsTests; sourceTree = "<group>"; };
+		E9E8FF492F92BD8800CEA57C /* WallaRobotsUITests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = WallaRobotsUITests; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		1A0E3A922862F7E200132FCB /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A66389F32DCE202500466318 /* Kingfisher in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1A0E3AA82862F7E300132FCB /* Frameworks */ = {
+		E9E8FF2D2F92BD8600CEA57C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1A0E3AB22862F7E300132FCB /* Frameworks */ = {
+		E9E8FF392F92BD8700CEA57C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E9E8FF432F92BD8800CEA57C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -78,9 +73,9 @@
 		1A0E3A8C2862F7E200132FCB = {
 			isa = PBXGroup;
 			children = (
-				1A0E3A972862F7E200132FCB /* WallaMarvel */,
-				1A0E3AAE2862F7E300132FCB /* WallaMarvelTests */,
-				1A0E3AB82862F7E300132FCB /* WallaMarvelUITests */,
+				E9E8FF312F92BD8600CEA57C /* WallaRobots */,
+				E9E8FF3F2F92BD8700CEA57C /* WallaRobotsTests */,
+				E9E8FF492F92BD8800CEA57C /* WallaRobotsUITests */,
 				1A0E3A962862F7E200132FCB /* Products */,
 			);
 			sourceTree = "<group>";
@@ -88,108 +83,82 @@
 		1A0E3A962862F7E200132FCB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1A0E3A952862F7E200132FCB /* WallaMarvel.app */,
-				1A0E3AAB2862F7E300132FCB /* WallaMarvelTests.xctest */,
-				1A0E3AB52862F7E300132FCB /* WallaMarvelUITests.xctest */,
+				E9E8FF302F92BD8600CEA57C /* WallaRobots.app */,
+				E9E8FF3C2F92BD8700CEA57C /* WallaRobotsTests.xctest */,
+				E9E8FF462F92BD8800CEA57C /* WallaRobotsUITests.xctest */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		1A0E3A972862F7E200132FCB /* WallaMarvel */ = {
-			isa = PBXGroup;
-			children = (
-				E9E8FF162F92975600CEA57C /* Presentation */,
-				E9E8FF0B2F921D7400CEA57C /* Domain */,
-				E9E8FF1B2F92AF2100CEA57C /* App */,
-				1A0E3AA12862F7E300132FCB /* Assets.xcassets */,
-				1A0E3AA62862F7E300132FCB /* Info.plist */,
-			);
-			path = WallaMarvel;
-			sourceTree = "<group>";
-		};
-		1A0E3AAE2862F7E300132FCB /* WallaMarvelTests */ = {
-			isa = PBXGroup;
-			children = (
-				1A0E3AAF2862F7E300132FCB /* WallaMarvelTests.swift */,
-			);
-			path = WallaMarvelTests;
-			sourceTree = "<group>";
-		};
-		1A0E3AB82862F7E300132FCB /* WallaMarvelUITests */ = {
-			isa = PBXGroup;
-			children = (
-				1A0E3AB92862F7E300132FCB /* WallaMarvelUITests.swift */,
-				1A0E3ABB2862F7E300132FCB /* WallaMarvelUITestsLaunchTests.swift */,
-			);
-			path = WallaMarvelUITests;
-			sourceTree = "<group>";
-		};
-		E9E8FF1B2F92AF2100CEA57C /* App */ = {
-			isa = PBXGroup;
-			children = (
-				E9E8FF122F928DC700CEA57C /* WallaRobots.swift */,
-			);
-			path = App;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1A0E3A942862F7E200132FCB /* WallaMarvel */ = {
+		E9E8FF2F2F92BD8600CEA57C /* WallaRobots */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1A0E3ABF2862F7E300132FCB /* Build configuration list for PBXNativeTarget "WallaMarvel" */;
+			buildConfigurationList = E9E8FF4E2F92BD8800CEA57C /* Build configuration list for PBXNativeTarget "WallaRobots" */;
 			buildPhases = (
-				1A0E3A912862F7E200132FCB /* Sources */,
-				1A0E3A922862F7E200132FCB /* Frameworks */,
-				1A0E3A932862F7E200132FCB /* Resources */,
+				E9E8FF2C2F92BD8600CEA57C /* Sources */,
+				E9E8FF2D2F92BD8600CEA57C /* Frameworks */,
+				E9E8FF2E2F92BD8600CEA57C /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				E9E8FF0B2F921D7400CEA57C /* Domain */,
-				E9E8FF162F92975600CEA57C /* Presentation */,
+				E9E8FF312F92BD8600CEA57C /* WallaRobots */,
 			);
-			name = WallaMarvel;
-			productName = WallaMarvel;
-			productReference = 1A0E3A952862F7E200132FCB /* WallaMarvel.app */;
+			name = WallaRobots;
+			packageProductDependencies = (
+			);
+			productName = WallaRobots;
+			productReference = E9E8FF302F92BD8600CEA57C /* WallaRobots.app */;
 			productType = "com.apple.product-type.application";
 		};
-		1A0E3AAA2862F7E300132FCB /* WallaMarvelTests */ = {
+		E9E8FF3B2F92BD8700CEA57C /* WallaRobotsTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1A0E3AC22862F7E300132FCB /* Build configuration list for PBXNativeTarget "WallaMarvelTests" */;
+			buildConfigurationList = E9E8FF512F92BD8800CEA57C /* Build configuration list for PBXNativeTarget "WallaRobotsTests" */;
 			buildPhases = (
-				1A0E3AA72862F7E300132FCB /* Sources */,
-				1A0E3AA82862F7E300132FCB /* Frameworks */,
-				1A0E3AA92862F7E300132FCB /* Resources */,
+				E9E8FF382F92BD8700CEA57C /* Sources */,
+				E9E8FF392F92BD8700CEA57C /* Frameworks */,
+				E9E8FF3A2F92BD8700CEA57C /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				1A0E3AAD2862F7E300132FCB /* PBXTargetDependency */,
+				E9E8FF3E2F92BD8700CEA57C /* PBXTargetDependency */,
 			);
-			name = WallaMarvelTests;
-			productName = WallaMarvelTests;
-			productReference = 1A0E3AAB2862F7E300132FCB /* WallaMarvelTests.xctest */;
+			fileSystemSynchronizedGroups = (
+				E9E8FF3F2F92BD8700CEA57C /* WallaRobotsTests */,
+			);
+			name = WallaRobotsTests;
+			packageProductDependencies = (
+			);
+			productName = WallaRobotsTests;
+			productReference = E9E8FF3C2F92BD8700CEA57C /* WallaRobotsTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		1A0E3AB42862F7E300132FCB /* WallaMarvelUITests */ = {
+		E9E8FF452F92BD8800CEA57C /* WallaRobotsUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1A0E3AC52862F7E300132FCB /* Build configuration list for PBXNativeTarget "WallaMarvelUITests" */;
+			buildConfigurationList = E9E8FF542F92BD8800CEA57C /* Build configuration list for PBXNativeTarget "WallaRobotsUITests" */;
 			buildPhases = (
-				1A0E3AB12862F7E300132FCB /* Sources */,
-				1A0E3AB22862F7E300132FCB /* Frameworks */,
-				1A0E3AB32862F7E300132FCB /* Resources */,
+				E9E8FF422F92BD8800CEA57C /* Sources */,
+				E9E8FF432F92BD8800CEA57C /* Frameworks */,
+				E9E8FF442F92BD8800CEA57C /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				1A0E3AB72862F7E300132FCB /* PBXTargetDependency */,
+				E9E8FF482F92BD8800CEA57C /* PBXTargetDependency */,
 			);
-			name = WallaMarvelUITests;
-			productName = WallaMarvelUITests;
-			productReference = 1A0E3AB52862F7E300132FCB /* WallaMarvelUITests.xctest */;
+			fileSystemSynchronizedGroups = (
+				E9E8FF492F92BD8800CEA57C /* WallaRobotsUITests */,
+			);
+			name = WallaRobotsUITests;
+			packageProductDependencies = (
+			);
+			productName = WallaRobotsUITests;
+			productReference = E9E8FF462F92BD8800CEA57C /* WallaRobotsUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -199,19 +168,19 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1340;
+				LastSwiftUpdateCheck = 2630;
 				LastUpgradeCheck = 1340;
 				TargetAttributes = {
-					1A0E3A942862F7E200132FCB = {
-						CreatedOnToolsVersion = 13.4.1;
+					E9E8FF2F2F92BD8600CEA57C = {
+						CreatedOnToolsVersion = 26.3;
 					};
-					1A0E3AAA2862F7E300132FCB = {
-						CreatedOnToolsVersion = 13.4.1;
-						TestTargetID = 1A0E3A942862F7E200132FCB;
+					E9E8FF3B2F92BD8700CEA57C = {
+						CreatedOnToolsVersion = 26.3;
+						TestTargetID = E9E8FF2F2F92BD8600CEA57C;
 					};
-					1A0E3AB42862F7E300132FCB = {
-						CreatedOnToolsVersion = 13.4.1;
-						TestTargetID = 1A0E3A942862F7E200132FCB;
+					E9E8FF452F92BD8800CEA57C = {
+						CreatedOnToolsVersion = 26.3;
+						TestTargetID = E9E8FF2F2F92BD8600CEA57C;
 					};
 				};
 			};
@@ -231,30 +200,29 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1A0E3A942862F7E200132FCB /* WallaMarvel */,
-				1A0E3AAA2862F7E300132FCB /* WallaMarvelTests */,
-				1A0E3AB42862F7E300132FCB /* WallaMarvelUITests */,
+				E9E8FF2F2F92BD8600CEA57C /* WallaRobots */,
+				E9E8FF3B2F92BD8700CEA57C /* WallaRobotsTests */,
+				E9E8FF452F92BD8800CEA57C /* WallaRobotsUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		1A0E3A932862F7E200132FCB /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1A0E3AA22862F7E300132FCB /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1A0E3AA92862F7E300132FCB /* Resources */ = {
+		E9E8FF2E2F92BD8600CEA57C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1A0E3AB32862F7E300132FCB /* Resources */ = {
+		E9E8FF3A2F92BD8700CEA57C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E9E8FF442F92BD8800CEA57C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -264,43 +232,39 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		1A0E3A912862F7E200132FCB /* Sources */ = {
+		E9E8FF2C2F92BD8600CEA57C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E9E8FF132F928DD400CEA57C /* WallaRobots.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1A0E3AA72862F7E300132FCB /* Sources */ = {
+		E9E8FF382F92BD8700CEA57C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1A0E3AB02862F7E300132FCB /* WallaMarvelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1A0E3AB12862F7E300132FCB /* Sources */ = {
+		E9E8FF422F92BD8800CEA57C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1A0E3ABA2862F7E300132FCB /* WallaMarvelUITests.swift in Sources */,
-				1A0E3ABC2862F7E300132FCB /* WallaMarvelUITestsLaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		1A0E3AAD2862F7E300132FCB /* PBXTargetDependency */ = {
+		E9E8FF3E2F92BD8700CEA57C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 1A0E3A942862F7E200132FCB /* WallaMarvel */;
-			targetProxy = 1A0E3AAC2862F7E300132FCB /* PBXContainerItemProxy */;
+			target = E9E8FF2F2F92BD8600CEA57C /* WallaRobots */;
+			targetProxy = E9E8FF3D2F92BD8700CEA57C /* PBXContainerItemProxy */;
 		};
-		1A0E3AB72862F7E300132FCB /* PBXTargetDependency */ = {
+		E9E8FF482F92BD8800CEA57C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 1A0E3A942862F7E200132FCB /* WallaMarvel */;
-			targetProxy = 1A0E3AB62862F7E300132FCB /* PBXContainerItemProxy */;
+			target = E9E8FF2F2F92BD8600CEA57C /* WallaRobots */;
+			targetProxy = E9E8FF472F92BD8800CEA57C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -419,17 +383,22 @@
 			};
 			name = Release;
 		};
-		1A0E3AC02862F7E300132FCB /* Debug */ = {
+		E9E8FF4F2F92BD8800CEA57C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = WallaMarvel/Info.plist;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
@@ -437,26 +406,37 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.wallapop.WallaMarvel;
+				PRODUCT_BUNDLE_IDENTIFIER = com.miguelAngelCabrera.WallaRobots;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		1A0E3AC12862F7E300132FCB /* Release */ = {
+		E9E8FF502F92BD8800CEA57C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = WallaMarvel/Info.plist;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
@@ -464,84 +444,121 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.wallapop.WallaMarvel;
+				PRODUCT_BUNDLE_IDENTIFIER = com.miguelAngelCabrera.WallaRobots;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
-		1A0E3AC32862F7E300132FCB /* Debug */ = {
+		E9E8FF522F92BD8800CEA57C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.wallapop.WallaMarvelTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.miguelAngelCabrera.WallaRobotsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WallaMarvel.app/WallaMarvel";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WallaRobots.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/WallaRobots";
 			};
 			name = Debug;
 		};
-		1A0E3AC42862F7E300132FCB /* Release */ = {
+		E9E8FF532F92BD8800CEA57C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.wallapop.WallaMarvelTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.miguelAngelCabrera.WallaRobotsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WallaMarvel.app/WallaMarvel";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WallaRobots.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/WallaRobots";
 			};
 			name = Release;
 		};
-		1A0E3AC62862F7E300132FCB /* Debug */ = {
+		E9E8FF552F92BD8800CEA57C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.wallapop.WallaMarvelUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.miguelAngelCabrera.WallaRobotsUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = WallaMarvel;
+				TEST_TARGET_NAME = WallaRobots;
 			};
 			name = Debug;
 		};
-		1A0E3AC72862F7E300132FCB /* Release */ = {
+		E9E8FF562F92BD8800CEA57C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.wallapop.WallaMarvelUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.miguelAngelCabrera.WallaRobotsUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = WallaMarvel;
+				TEST_TARGET_NAME = WallaRobots;
 			};
 			name = Release;
 		};
@@ -557,29 +574,29 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1A0E3ABF2862F7E300132FCB /* Build configuration list for PBXNativeTarget "WallaMarvel" */ = {
+		E9E8FF4E2F92BD8800CEA57C /* Build configuration list for PBXNativeTarget "WallaRobots" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				1A0E3AC02862F7E300132FCB /* Debug */,
-				1A0E3AC12862F7E300132FCB /* Release */,
+				E9E8FF4F2F92BD8800CEA57C /* Debug */,
+				E9E8FF502F92BD8800CEA57C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1A0E3AC22862F7E300132FCB /* Build configuration list for PBXNativeTarget "WallaMarvelTests" */ = {
+		E9E8FF512F92BD8800CEA57C /* Build configuration list for PBXNativeTarget "WallaRobotsTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				1A0E3AC32862F7E300132FCB /* Debug */,
-				1A0E3AC42862F7E300132FCB /* Release */,
+				E9E8FF522F92BD8800CEA57C /* Debug */,
+				E9E8FF532F92BD8800CEA57C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1A0E3AC52862F7E300132FCB /* Build configuration list for PBXNativeTarget "WallaMarvelUITests" */ = {
+		E9E8FF542F92BD8800CEA57C /* Build configuration list for PBXNativeTarget "WallaRobotsUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				1A0E3AC62862F7E300132FCB /* Debug */,
-				1A0E3AC72862F7E300132FCB /* Release */,
+				E9E8FF552F92BD8800CEA57C /* Debug */,
+				E9E8FF562F92BD8800CEA57C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -596,14 +613,6 @@
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		A66389F22DCE202500466318 /* Kingfisher */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = A66389F12DCE202500466318 /* XCRemoteSwiftPackageReference "Kingfisher" */;
-			productName = Kingfisher;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1A0E3A8D2862F7E200132FCB /* Project object */;
 }

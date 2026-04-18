@@ -1,6 +1,13 @@
+//
+//  WallaRobotsUITestsLaunchTests.swift
+//  WallaRobotsUITests
+//
+//  Created by Miguel Cabrera on 17/04/2026.
+//
+
 import XCTest
 
-class WallaMarvelUITestsLaunchTests: XCTestCase {
+final class WallaRobotsUITestsLaunchTests: XCTestCase {
 
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true
@@ -10,6 +17,7 @@ class WallaMarvelUITestsLaunchTests: XCTestCase {
         continueAfterFailure = false
     }
 
+    @MainActor
     func testLaunch() throws {
         let app = XCUIApplication()
         app.launch()
