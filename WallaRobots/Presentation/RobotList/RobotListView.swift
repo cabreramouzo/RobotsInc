@@ -13,7 +13,7 @@ struct RobotListView: View {
     var body: some View {
         NavigationStack {
             List {
-                ForEach(viewModel.robots, id: \.id) { robot in
+                ForEach(viewModel.filteredRobots, id: \.id) { robot in
                     NavigationLink {
                         RobotDetailView(robot: robot)
                     } label: {
@@ -43,7 +43,7 @@ struct RobotListView: View {
                                 .cornerRadius(4)
                         }
                         .onAppear {
-                            if robot.id == viewModel.robots.last?.id {
+                            if viewModel.searchText.isEmpty && robot.id == viewModel.filteredRobots.last?.id {
                                 Task {
                                     try? await viewModel.loadMoreRobots()
                                 }
@@ -58,6 +58,7 @@ struct RobotListView: View {
                 try? await viewModel.initialLoad()
             }
         }
+        .searchable(text: $viewModel.searchText, prompt: "Search robots by name or email")
     }
 }
 

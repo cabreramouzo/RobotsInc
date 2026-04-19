@@ -17,8 +17,22 @@ final class RobotViewModel: ObservableObject {
     let pageSize = 20
     var currentPage = 0
 
+    @Published var searchText = ""
+
+    var filteredRobots: [Robot] {
+        if searchText.isEmpty {
+            return robots
+        } else {
+            return allRobots.filter {
+                $0.fullName.localizedCaseInsensitiveContains(searchText) ||
+                $0.username.localizedCaseInsensitiveContains(searchText) ||
+                $0.email.localizedCaseInsensitiveContains(searchText)
+            }
+        }
+    }
+
     var hasMoreData: Bool {
-        return currentPage * pageSize < allRobots.count
+        return searchText.isEmpty && currentPage * pageSize < allRobots.count
     }
 
     @MainActor
