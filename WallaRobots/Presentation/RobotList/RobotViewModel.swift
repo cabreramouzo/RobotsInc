@@ -18,21 +18,33 @@ final class RobotViewModel: ObservableObject {
     var currentPage = 0
 
     @Published var searchText = ""
+    @Published var debouncedSearchText = ""
+
+    private var cancellables = Set<AnyCancellable>()
+
+    init() {
+        $searchText
+            .debounce(for: .seconds(0.3), scheduler: RunLoop.main)
+            .removeDuplicates()
+            .assign(to: \.debouncedSearchText, on: self)
+            .store(in: &cancellables)
+
+    }
 
     var filteredRobots: [Robot] {
-        if searchText.isEmpty {
+        if debouncedSearchText.isEmpty {
             return robots
         } else {
             return allRobots.filter {
-                $0.fullName.localizedCaseInsensitiveContains(searchText) ||
-                $0.username.localizedCaseInsensitiveContains(searchText) ||
-                $0.email.localizedCaseInsensitiveContains(searchText)
+                $0.fullName.localizedCaseInsensitiveContains(debouncedSearchText) ||
+                $0.username.localizedCaseInsensitiveContains(debouncedSearchText) ||
+                $0.email.localizedCaseInsensitiveContains(debouncedSearchText)
             }
         }
     }
 
     var hasMoreData: Bool {
-        return searchText.isEmpty && currentPage * pageSize < allRobots.count
+        return debouncedSearchText.isEmpty && currentPage * pageSize < allRobots.count
     }
 
     @MainActor
