@@ -10,8 +10,17 @@ import Testing
 
 struct WallaRobotsTests {
 
-    @Test func example() async throws {
-        // Write your test here and use APIs like `#expect(...)` to check expected conditions.
+    @Test("Verify initial load populates robots array")
+    func testInitialLoadPopulatesRobots() async throws {
+        // GIVEN
+        let viewModel = await RobotViewModel()
+
+        // WHEN
+        try await viewModel.initialLoad()
+
+        // THEN
+        #expect(!viewModel.robots.isEmpty)
+        #expect(viewModel.robots.count == 20) // First pagination slice
     }
 
 }
