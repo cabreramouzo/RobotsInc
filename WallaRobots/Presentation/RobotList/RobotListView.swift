@@ -25,6 +25,8 @@ struct RobotListView: View {
                             }
                             .frame(width: 50, height: 50)
                             .clipShape(Circle())
+                            .accessibilityLabel("Avatar of \(robot.fullName)")
+                            .accessibilityHidden(false)
                             .id(robot.id)
 
                             VStack(alignment: .leading) {
@@ -42,6 +44,8 @@ struct RobotListView: View {
                                 .background(Color.gray.opacity(0.1))
                                 .cornerRadius(4)
                         }
+                        .accessibilityElement(children: .combine)
+                        .accessibilityHint("Double tap to view details of \(robot.fullName)")
                         .onAppear {
                             if viewModel.searchText.isEmpty && robot.id == viewModel.filteredRobots.last?.id {
                                 Task {

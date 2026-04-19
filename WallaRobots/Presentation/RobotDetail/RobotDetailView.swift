@@ -23,6 +23,7 @@ struct RobotDetailView: View {
                 }
                 .frame(width: 200, height: 200)
                 .padding(.top, 20)
+                .accessibilityLabel("Avatar of \(robot.fullName)")
 
                 VStack(alignment: .leading, spacing: 12) {
                     Group {
@@ -51,6 +52,7 @@ struct RobotDetailView: View {
                             .padding(8)
                             .background(Color.gray.opacity(0.1))
                             .cornerRadius(8)
+                            .accessibilityValue(robot.status == "New" ? "Robot is new" : "Robot is Refurbished")
                     }
                 }
                 .padding(.horizontal)
