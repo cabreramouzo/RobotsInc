@@ -14,6 +14,8 @@ final class RobotViewModel: ObservableObject {
     private var allRobots: [Robot] = []
     var isLoading: Bool = false
 
+    let service: RobotServiceProtocol
+
     let pageSize = 20
     var currentPage = 0
 
@@ -22,7 +24,12 @@ final class RobotViewModel: ObservableObject {
 
     private var cancellables = Set<AnyCancellable>()
 
-    init() {
+    init(service: RobotServiceProtocol = RobotService()) {
+        self.service = service
+        setupSearchDebounce()
+    }
+
+    func setupSearchDebounce() {
         $searchText
             .debounce(for: .seconds(0.3), scheduler: RunLoop.main)
             .removeDuplicates()
@@ -49,25 +56,14 @@ final class RobotViewModel: ObservableObject {
 
     @MainActor
     func initialLoad() async throws {
-
-        let urlString = "https://acoding.academy/testData/EmpleadosData.json"
-        guard let url = URL(string: urlString) else { return }
+        guard allRobots.isEmpty else { return }
 
         do {
-            let (data, response) = try await URLSession.shared.data(from: url)
-
-            guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
-                throw URLError(.badServerResponse)
-            }
-            let decodedRobots = try JSONDecoder().decode([Robot].self, from: data)
-
-            allRobots = decodedRobots
-            try? await loadMoreRobots()
-
+            allRobots = try await service.fetchRobots()
+            try await loadMoreRobots()
         } catch {
-            print("Error fetching robots: \(error)")
+            print("Error retrieving robots: \(error)")
         }
-
     }
 
     @MainActor

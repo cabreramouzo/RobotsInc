@@ -55,6 +55,7 @@ struct RobotListView: View {
                         }
                     }
                     .id(robot.id)
+                    .accessibilityIdentifier("RobotRow_\(robot.id)")
                 }
             }
             .navigationTitle("WallaRobots")

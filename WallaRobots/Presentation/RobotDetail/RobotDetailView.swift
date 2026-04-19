@@ -28,6 +28,7 @@ struct RobotDetailView: View {
                 VStack(alignment: .leading, spacing: 12) {
                     Group {
                         detailRow(label: "Full Name", value: robot.fullName, icon: "person.fill")
+                            .accessibilityIdentifier("RobotDetailName")
                         detailRow(label: "Email", value: robot.email, icon: "envelope.fill")
                         detailRow(label: "Department", value: robot.department.rawValue, icon: "briefcase.fill")
                         detailRow(label: "Address", value: robot.address, icon: "mappin.and.ellipse")

@@ -30,4 +30,23 @@ final class WallaRobotsUITestsLaunchTests: XCTestCase {
         attachment.lifetime = .keepAlways
         add(attachment)
     }
+
+    func testNavigationToDetail() {
+        let app = XCUIApplication()
+        app.launch()
+
+        // GIVEN: Wait until robots list loaded
+        let firstRow = app.buttons.matching(identifier: "RobotRow_1").firstMatch
+
+        XCTAssertTrue(firstRow.waitForExistence(timeout: 5), "The firt row of the list isn't showed")
+
+        // WHEN
+        firstRow.tap()
+
+        // THEN: Verify we are in the deail view
+        let detailName = app.staticTexts["RobotDetailName"]
+        XCTAssertTrue(detailName.exists, " Can't navigate to detail view")
+
+    }
+
 }
