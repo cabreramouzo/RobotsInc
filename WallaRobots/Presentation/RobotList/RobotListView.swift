@@ -60,52 +60,54 @@ struct RobotListView: View {
     }
 }
 
-// MARK: Subviews
+// MARK: - Subviews
+private extension RobotListView {
 
-@ViewBuilder
-func robotVerticalStack(robot: Robot) -> some View {
-    VStack(alignment: .leading) {
-        Text(robot.fullName).font(.headline)
-        Text(robot.email).font(.subheadline).foregroundColor(.gray)
-        Text("\(robot.price, specifier: "%.2f")€")
-            .font(.system(size: 18, weight: .bold))
-            .foregroundColor(Color(red: 0.07, green: 0.76, blue: 0.67))
+    @ViewBuilder
+    func robotVerticalStack(robot: Robot) -> some View {
+        VStack(alignment: .leading) {
+            Text(robot.fullName).font(.headline)
+            Text(robot.email).font(.subheadline).foregroundColor(.gray)
+            Text("\(robot.price, specifier: "%.2f")€")
+                .font(.system(size: 18, weight: .bold))
+                .foregroundColor(Color(red: 0.07, green: 0.76, blue: 0.67))
+        }
     }
-}
 
-@ViewBuilder
-func robotAvatarImage(robot: Robot) -> some View {
-    KFImage(robot.avatar)
-        .placeholder {
-            RobotAvatarPlaceholder()
-        }
-        .retry(maxCount: 3, interval: .seconds(1))
-        .onSuccess { result in
-        }
-        .onFailure { error in
-            print("Error leading avatar image: \(error)")
-        }
-        .resizable()
-        .scaledToFill()
-        .frame(width: 50, height: 50)
-        .clipShape(Circle())
-        .accessibilityLabel("Avatar of \(robot.fullName)")
-        .id(robot.id)
-}
-
-@ViewBuilder
-func RobotAvatarPlaceholder() -> some View {
-    ZStack {
-        Color.gray.opacity(0.1)
-        Image(systemName: "person.fill")
+    @ViewBuilder
+    func robotAvatarImage(robot: Robot) -> some View {
+        KFImage(robot.avatar)
+            .placeholder {
+                robotAvatarPlaceholder()
+            }
+            .retry(maxCount: 3, interval: .seconds(1))
+            .onSuccess { result in
+            }
+            .onFailure { error in
+                print("Error leading avatar image: \(error)")
+            }
             .resizable()
-            .scaledToFit()
-            .frame(width: 20, height: 20)
+            .scaledToFill()
+            .frame(width: 50, height: 50)
+            .clipShape(Circle())
+            .accessibilityLabel("Avatar of \(robot.fullName)")
+            .id(robot.id)
     }
+
+    @ViewBuilder
+    func robotAvatarPlaceholder() -> some View {
+        ZStack {
+            Color.gray.opacity(0.1)
+            Image(systemName: "person.fill")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 20, height: 20)
+        }
+    }
+
 }
 
-
-// MARK: Previews
+// MARK: - Previews
 
 #Preview("List with data") {
     RobotListView(viewModel: RobotViewModel(service: FakeRobotService.previewService))
