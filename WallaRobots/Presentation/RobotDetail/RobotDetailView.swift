@@ -53,7 +53,7 @@ struct RobotDetailView: View {
                             .padding(8)
                             .background(Color.gray.opacity(0.1))
                             .cornerRadius(8)
-                            .accessibilityValue(robot.status == "New" ? "Robot is new" : "Robot is Refurbished")
+                            .accessibilityValue(robot.status == .new ? "Robot is new" : "Robot is Refurbished")
                     }
                 }
                 .padding(.horizontal)

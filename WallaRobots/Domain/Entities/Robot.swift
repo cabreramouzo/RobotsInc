@@ -4,13 +4,8 @@
 //
 //  Created by Miguel Cabrera on 16/04/2026.
 //
-// https://acoding.academy/testData/EmpleadosData.json
 
 import Foundation
-
-
-let urlRobots = URL(string: "https://acoding.academy/testData/EmpleadosData.json")!
-
 
 enum Department: String, Codable {
     case accounting = "Accounting"
@@ -32,8 +27,18 @@ enum Gender: String, Codable {
     case male = "Male"
 }
 
+enum RobotCategory: String {
+    case generalServicesRobot = "General Robots"
+    case cleaningRobot = "Cleaning Robots"
+}
+
+enum RobotStatus: String {
+    case new = "New"
+    case refurbished = "Refurbished"
+}
+
 struct Robot: Identifiable, Codable, Hashable {
-    let id: Int // podria ser UUID?
+    let id: Int
     let username: String
     let firstName: String
     let lastName: String
@@ -52,16 +57,16 @@ struct Robot: Identifiable, Codable, Hashable {
     var fullName: String { "\(firstName) \(lastName)" }
     
     var price: Double {
-        return Double(id) * 12.9
+        // Random price
+        return Double.random(in: Range(uncheckedBounds: (lower: 1.0, upper: 1024.0)))
+    }
+
+    var category: RobotCategory {
+        department == .humanResources ? .generalServicesRobot : .cleaningRobot
     }
     
-    var category: String {
-        department == .humanResources ? "Services" : "Robots"
-    }
-    
-    var status: String {
-        let rand = [1,2,3,4,5,6,7,8,9,10].randomElement() ?? 1
-        return rand % 2 == 0 ? "New" : "Refurbished"
+    var status: RobotStatus {
+        [.new, .refurbished].randomElement() ?? .new
     }
 }
 
