@@ -3,6 +3,9 @@
 
 Esta aplicación es una implementación técnica para un listado y visualizador de detalles de robots, enfocada en el alto desacoplamiento, la limpieza arquitectónica y un rendimiento optimizado en SwiftUI.
 
+ | App Icon | Dark | 
+ | :--: | :--: |
+ | <img src="WallaRobots/Resources/Assets.xcassets/AppIcon.appiconset/WallaRobots-iOS-Default-1024x1024%401x.png" width="150" alt="App Icon"> | <img src="WallaRobots/Resources/Assets.xcassets/AppIcon.appiconset/WallaRobots-iOS-Dark-1024x1024%401x.png" width="150" alt="App Icon"> |
 ---
 
 ## 🚀 Decisiones de Arquitectura
@@ -56,8 +59,16 @@ Este proyecto sigue un modelo de ramificación inspirado en **Git Flow**:
 ---
 
 ## 🎨 Créditos y Origen de Datos
+* **Diseño de Icono:** El icono de app personalizado fue creado específicamente para este challenge usando Apple [Icon Composer](https://developer.apple.com/icon-composer/).
 * **API de Imágenes:** Se ha utilizado [Robohash](https://robohash.org/) para la generación dinámica de los avatares de los robots.
 * **Fuente de Datos:** Debido a la inactividad de la API original de Marvel, se ha optado por utilizar un endpoint remoto con un dataset de empleados ficticio utilizado previamente en mi etapa de formación.
+
+---
+
+## 📱 Capturas de pantalla
+| Vista Lista | Vista detalle | Búqueda | Vista sin conexión |
+| :---: | :---: | :---: |  :---: |
+| <img src="WallaRobots/Resources/Screenshots/RobotList.png" width="200" alt="Robot list"> | <img src="WallaRobots/Resources/Screenshots/RobotDetail.png" width="200" alt="Robot Detail"> | <img src="WallaRobots/Resources/Screenshots/Search.png" width="200" alt="Search view"> | <img src="WallaRobots/Resources/Screenshots/NoInternet.png" width="200" alt="No Internet view"> |
 
 ---
 
@@ -130,10 +141,16 @@ This project follows a **Git Flow** inspired branching model:
 ---
 
 ## 🎨 Credits & Data Sources
+* **Icon Design:** The custom app icon was created specifically for this challenge using Apple [Icon Composer](https://developer.apple.com/icon-composer/).
 * **Image API:** [Robohash](https://robohash.org/) was used for the dynamic generation of robot avatars.
 * **Data Source:** Due to the unavailability of the original Marvel API, I opted for a remote endpoint featuring a employees dataset previously used during my academy training.
 
 ---
+
+## 📱 Screenshots
+| List View | Detail View | Search | Network Error |
+| :---: | :---: | :---: |  :---: |
+| <img src="WallaRobots/Resources/Screenshots/RobotList.png" width="200" alt="Robot list"> | <img src="WallaRobots/Resources/Screenshots/RobotDetail.png" width="200" alt="Robot Detail"> | <img src="WallaRobots/Resources/Screenshots/Search.png" width="200" alt="Search view"> | <img src="WallaRobots/Resources/Screenshots/NoInternet.png" width="200" alt="No Internet view"> |
 
 ## ⚙️ Requirements & Setup
 * **iOS:** 16.0+
