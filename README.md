@@ -59,7 +59,7 @@ Este proyecto sigue un modelo de ramificación inspirado en **Git Flow**:
 ---
 
 ## 🎨 Créditos y Origen de Datos
-* **Diseño de Icono:** El icono de app personalizado fue creado específicamente para este challenge usando Apple Icon Composer.
+* **Diseño de Icono:** El icono de app personalizado fue creado específicamente para este challenge usando Apple [Icon Composer](https://developer.apple.com/icon-composer/).
 * **API de Imágenes:** Se ha utilizado [Robohash](https://robohash.org/) para la generación dinámica de los avatares de los robots.
 * **Fuente de Datos:** Debido a la inactividad de la API original de Marvel, se ha optado por utilizar un endpoint remoto con un dataset de empleados ficticio utilizado previamente en mi etapa de formación.
 
@@ -141,7 +141,7 @@ This project follows a **Git Flow** inspired branching model:
 ---
 
 ## 🎨 Credits & Data Sources
-* **Icon Design:** The custom app icon was created specifically for this challenge using Apple Icon Composer.
+* **Icon Design:** The custom app icon was created specifically for this challenge using Apple [Icon Composer](https://developer.apple.com/icon-composer/).
 * **Image API:** [Robohash](https://robohash.org/) was used for the dynamic generation of robot avatars.
 * **Data Source:** Due to the unavailability of the original Marvel API, I opted for a remote endpoint featuring a employees dataset previously used during my academy training.
 
