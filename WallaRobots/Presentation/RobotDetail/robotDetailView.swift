@@ -6,7 +6,7 @@
 //
 import SwiftUI
 
-struct RobotDetailView: View {
+struct robotDetailView: View {
     let robot: Robot
 
     var body: some View {
@@ -86,5 +86,5 @@ struct RobotDetailView: View {
                           department: .humanResources,
                           address: "127.0.0.1",
                           avatar: URL(string: "https://robohash.org/2.png?set=set1&size=180x180")!)
-    RobotDetailView(robot: testRobot)
+    robotDetailView(robot: testRobot)
 }

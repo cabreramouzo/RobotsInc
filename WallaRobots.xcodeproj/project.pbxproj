@@ -6,6 +6,10 @@
 	objectVersion = 70;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		E94BDA5B2F96250400D9D1EE /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = E94BDA5A2F96250400D9D1EE /* Kingfisher */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		E9E8FF3D2F92BD8700CEA57C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -30,6 +34,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		E94BDA5D2F963B3100D9D1EE /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Fakes/FakeRobotService.swift,
+				Resources/test_robots.json,
+			);
+			target = E9E8FF2F2F92BD8600CEA57C /* WallaRobots */;
+		};
 		E9E8FF762F936FBA00CEA57C /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -41,7 +53,7 @@
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		E9E8FF312F92BD8600CEA57C /* WallaRobots */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (E9E8FF762F936FBA00CEA57C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = WallaRobots; sourceTree = "<group>"; };
-		E9E8FF3F2F92BD8700CEA57C /* WallaRobotsTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = WallaRobotsTests; sourceTree = "<group>"; };
+		E9E8FF3F2F92BD8700CEA57C /* WallaRobotsTests */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (E94BDA5D2F963B3100D9D1EE /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = WallaRobotsTests; sourceTree = "<group>"; };
 		E9E8FF492F92BD8800CEA57C /* WallaRobotsUITests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = WallaRobotsUITests; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
@@ -50,6 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E94BDA5B2F96250400D9D1EE /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,6 +89,7 @@
 				E9E8FF312F92BD8600CEA57C /* WallaRobots */,
 				E9E8FF3F2F92BD8700CEA57C /* WallaRobotsTests */,
 				E9E8FF492F92BD8800CEA57C /* WallaRobotsUITests */,
+				E94BDA592F96250400D9D1EE /* Frameworks */,
 				1A0E3A962862F7E200132FCB /* Products */,
 			);
 			sourceTree = "<group>";
@@ -88,6 +102,13 @@
 				E9E8FF462F92BD8800CEA57C /* WallaRobotsUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		E94BDA592F96250400D9D1EE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -110,6 +131,7 @@
 			);
 			name = WallaRobots;
 			packageProductDependencies = (
+				E94BDA5A2F96250400D9D1EE /* Kingfisher */,
 			);
 			productName = WallaRobots;
 			productReference = E9E8FF302F92BD8600CEA57C /* WallaRobots.app */;
@@ -613,6 +635,14 @@
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E94BDA5A2F96250400D9D1EE /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A66389F12DCE202500466318 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1A0E3A8D2862F7E200132FCB /* Project object */;
 }

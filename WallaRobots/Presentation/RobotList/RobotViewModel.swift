@@ -22,6 +22,8 @@ final class RobotViewModel: ObservableObject {
     @Published var searchText = ""
     @Published var debouncedSearchText = ""
 
+    @Published var showNetworkError: Bool = false
+
     private var cancellables = Set<AnyCancellable>()
 
     init(service: RobotServiceProtocol = RobotService()) {
@@ -62,6 +64,10 @@ final class RobotViewModel: ObservableObject {
             allRobots = try await service.fetchRobots()
             try await loadMoreRobots()
         } catch {
+            if let urlError = error as? URLError,
+                urlError.code == .notConnectedToInternet || urlError.code == .timedOut {
+                showNetworkError = true
+            }
             print("Error retrieving robots: \(error)")
         }
     }

@@ -23,13 +23,26 @@ final class FakeRobotService: RobotServiceProtocol {
         }
     }
     
-    // Helper para cargar el JSON local
+    // Helper to load JSON locally
     static func loadMockRobots() -> [Robot] {
         let json = Bundle(for: Self.self).url(forResource: "test_robots", withExtension: "json")!
         let jsonData = try! Data(contentsOf: json)
         
         let decoder = JSONDecoder()
-        // No olvides configurar el keyDecodingStrategy si el JSON real es snake_case
         return (try? decoder.decode([Robot].self, from: jsonData)) ?? []
+    }
+}
+
+extension FakeRobotService {
+    static var previewService: FakeRobotService {
+        let service = FakeRobotService()
+        service.result = .success(loadMockRobots())
+        return service
+    }
+
+    static var error: FakeRobotService {
+        let service = FakeRobotService()
+        service.result = .failure(URLError(.notConnectedToInternet))
+        return service
     }
 }
