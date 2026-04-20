@@ -6,7 +6,7 @@
 //
 import SwiftUI
 
-struct robotDetailView: View {
+struct RobotDetailView: View {
     let robot: Robot
 
     var body: some View {
