@@ -73,7 +73,7 @@ Este proyecto sigue un modelo de ramificación inspirado en **Git Flow**:
 ---
 
 ## ⚙️ Requisitos y Configuración
-* **iOS:** 16.0+
+* **iOS:** 17.0+
 * **Swift:** 6.0 (Compatible con Concurrencia Estricta)
 * **Xcode Previews:** El archivo `test_robots.json` está incluido en el **Target Membership** de la App para asegurar que las Previews funcionen correctamente con datos de prueba.
 
@@ -153,7 +153,7 @@ This project follows a **Git Flow** inspired branching model:
 | <img src="WallaRobots/Resources/Screenshots/RobotList.png" width="200" alt="Robot list"> | <img src="WallaRobots/Resources/Screenshots/RobotDetail.png" width="200" alt="Robot Detail"> | <img src="WallaRobots/Resources/Screenshots/Search.png" width="200" alt="Search view"> | <img src="WallaRobots/Resources/Screenshots/NoInternet.png" width="200" alt="No Internet view"> |
 
 ## ⚙️ Requirements & Setup
-* **iOS:** 16.0+
+* **iOS:** 17.0+
 * **Swift:** 6.0
 * **Xcode Previews:** The `test_robots.json` file is included in the App's **Target Membership** to ensure Previews function correctly with mock data.
 
