@@ -44,10 +44,10 @@ struct RobotDetailView: View {
                             Text("\(robot.price, specifier: "%.2f")€")
                                 .font(.title2)
                                 .bold()
-                                .foregroundColor(Color(red: 0.07, green: 0.76, blue: 0.67))
+                                .foregroundColor(Color.wallapopColor)
                         }
                         Spacer()
-                        Text(robot.status)
+                        Text(robot.status.rawValue)
                             .font(.caption)
                             .bold()
                             .padding(8)
