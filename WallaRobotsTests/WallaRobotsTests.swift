@@ -12,12 +12,13 @@ import Foundation
 struct WallaRobotsTests {
 
     @Test("Verify initial load populates robots array")
-    func testInitialLoadPopulatesRobots() async throws {
+    @MainActor
+    func testInitialLoadPopulatesRobots() async {
         // GIVEN
-        let viewModel = await RobotViewModel()
+        let viewModel = RobotViewModel()
 
         // WHEN
-        try await viewModel.initialLoad()
+        await viewModel.initialLoad()
 
         // THEN
         #expect(!viewModel.robots.isEmpty)
@@ -26,7 +27,7 @@ struct WallaRobotsTests {
 
     @Test("Test initial load success with mocked service")
     @MainActor
-    func testInitialLoadSuccess() async throws {
+    func testInitialLoadSuccess() async {
         // GIVEN
         let mockRobots = FakeRobotService.loadMockRobots()
         let mockService = FakeRobotService()
@@ -35,23 +36,25 @@ struct WallaRobotsTests {
         let viewModel = RobotViewModel(service: mockService)
 
         // WHEN
-        try await viewModel.initialLoad()
+        await viewModel.initialLoad()
 
         // THEN
         #expect(mockService.fetchCalled)
         #expect(viewModel.robots.count == 20)
     }
 
+
     @Test("Test initial load failure shows error message")
-    func testInitialLoadFailure() async throws {
+    @MainActor
+    func testInitialLoadFailure() async {
         // GIVEN
         let mockService = FakeRobotService()
         mockService.result = .failure(URLError(.notConnectedToInternet))
 
-        let viewModel = await RobotViewModel(service: mockService)
+        let viewModel = RobotViewModel(service: mockService)
 
         // WHEN
-        try await viewModel.initialLoad()
+        await viewModel.initialLoad()
 
         // THEN
         #expect(viewModel.robots.isEmpty)
@@ -68,7 +71,7 @@ struct WallaRobotsTests {
         let viewModel = RobotViewModel(service: mockService)
 
         // WHEN
-        try await viewModel.initialLoad()
+        await viewModel.initialLoad()
 
         // THEN
         // If robots is empty, the test stops here and throws a clean error

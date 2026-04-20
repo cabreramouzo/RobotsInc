@@ -7,7 +7,6 @@
 
 
 import Foundation
-@testable import WallaRobots
 
 final class FakeRobotService: RobotServiceProtocol {
     var result: Result<[Robot], Error> = .success([])

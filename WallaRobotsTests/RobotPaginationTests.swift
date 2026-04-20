@@ -14,11 +14,11 @@ final class RobotPaginationTests: XCTestCase {
     func testLoadMoreRobotsIncrementsList() async throws {
         // GIVEN
         let viewModel = RobotViewModel()
-        try await viewModel.initialLoad() // Loads first 20 robots
+        await viewModel.initialLoad() // Loads first 20 robots
         let initialCount = viewModel.robots.count
 
         // WHEN
-        try await viewModel.loadMoreRobots()
+        viewModel.loadMoreRobots()
 
         // THEN
         XCTAssertEqual(viewModel.robots.count, initialCount + 20, "The array should be increased by 20 elements")

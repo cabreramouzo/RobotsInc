@@ -73,11 +73,11 @@ final class RobotViewModel: ObservableObject {
             Logger.network.error("Unexpected error fetching robots: \(error.localizedDescription)")
         }
 
-        await loadMoreRobots()
+        loadMoreRobots()
     }
 
     @MainActor
-    func loadMoreRobots() async {
+    func loadMoreRobots() {
 
         guard !isLoading && hasMoreData else { return }
 

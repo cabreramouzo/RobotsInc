@@ -16,7 +16,7 @@ final class RobotSearchTests: XCTestCase {
         // GIVEN:
         let viewModel = RobotViewModel()
 
-        try await viewModel.initialLoad()
+        await viewModel.initialLoad()
 
         let robotToFind = viewModel.robots.first?.fullName ?? ""
 

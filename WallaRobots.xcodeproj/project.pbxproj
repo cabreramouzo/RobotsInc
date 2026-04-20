@@ -42,6 +42,13 @@
 			);
 			target = E9E8FF2F2F92BD8600CEA57C /* WallaRobots */;
 		};
+		E964726D2F96EB6800EC7D32 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Fakes/FakeRobotService.swift,
+			);
+			target = E9E8FF3B2F92BD8700CEA57C /* WallaRobotsTests */;
+		};
 		E9E8FF762F936FBA00CEA57C /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -53,7 +60,7 @@
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		E9E8FF312F92BD8600CEA57C /* WallaRobots */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (E9E8FF762F936FBA00CEA57C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = WallaRobots; sourceTree = "<group>"; };
-		E9E8FF3F2F92BD8700CEA57C /* WallaRobotsTests */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (E94BDA5D2F963B3100D9D1EE /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = WallaRobotsTests; sourceTree = "<group>"; };
+		E9E8FF3F2F92BD8700CEA57C /* WallaRobotsTests */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (E94BDA5D2F963B3100D9D1EE /* PBXFileSystemSynchronizedBuildFileExceptionSet */, E964726D2F96EB6800EC7D32 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = WallaRobotsTests; sourceTree = "<group>"; };
 		E9E8FF492F92BD8800CEA57C /* WallaRobotsUITests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = WallaRobotsUITests; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
