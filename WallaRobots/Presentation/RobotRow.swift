@@ -22,7 +22,7 @@ struct RobotRow: View {
 
                 Spacer()
 
-                Text(robot.status)
+                Text(robot.status.rawValue)
                     .font(.caption)
                     .padding(6)
                     .background(Color.gray.opacity(0.1))

@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Combine
+import OSLog
 
 final class RobotViewModel: ObservableObject {
     @Published var robots: [Robot] = []
@@ -57,18 +58,25 @@ final class RobotViewModel: ObservableObject {
     }
 
     @MainActor
-    func initialLoad() async throws {
+    func initialLoad() async {
         guard allRobots.isEmpty else { return }
 
         do {
             allRobots = try await service.fetchRobots()
+        } catch let urlError as URLError {
+            if urlError.code == .notConnectedToInternet || urlError.code == .timedOut {
+                self.showNetworkError = true
+            }
+            Logger.network.error("Network error: \(urlError.localizedDescription)")
+
+        } catch {
+            Logger.network.error("Unexpected error fetching robots: \(error.localizedDescription)")
+        }
+
+        do {
             try await loadMoreRobots()
         } catch {
-            if let urlError = error as? URLError,
-                urlError.code == .notConnectedToInternet || urlError.code == .timedOut {
-                showNetworkError = true
-            }
-            print("Error retrieving robots: \(error)")
+            Logger.viewCycle.error("Error loading more robots: \(error)")
         }
     }
 
@@ -79,8 +87,6 @@ final class RobotViewModel: ObservableObject {
 
         isLoading = true
 
-        try? await Task.sleep(nanoseconds: 50_000_000)
-
         let start = currentPage * pageSize
         let end = min(start + pageSize, allRobots.count)
 
@@ -90,12 +96,6 @@ final class RobotViewModel: ObservableObject {
         robots.append(contentsOf: newSlice)
 
         currentPage += 1
-
-        try? await Task.sleep(nanoseconds: 200_000_000)
         isLoading = false
-
-
-
     }
 }
-
