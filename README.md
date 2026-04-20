@@ -6,7 +6,8 @@ Esta aplicación es una implementación técnica para un listado y visualizador 
  | App Icon | Dark | 
  | :--: | :--: |
  | <img src="WallaRobots/Resources/Assets.xcassets/AppIcon.appiconset/WallaRobots-iOS-Default-1024x1024%401x.png" width="150" alt="App Icon"> | <img src="WallaRobots/Resources/Assets.xcassets/AppIcon.appiconset/WallaRobots-iOS-Dark-1024x1024%401x.png" width="150" alt="App Icon"> |
----
+
+ ---
 
 ## 🚀 Decisiones de Arquitectura
 
@@ -48,7 +49,11 @@ Se ha implementado una estrategia de pruebas básica pero sólida:
 ---
 
 ## 🌳 Estrategia de Git
+<<<<<<< HEAD
 Este proyecto sigue un modelo de ramificación inspirado en **Git Flow**:
+=======
+ste proyecto sigue un modelo de ramificación inspirado en **Git Flow**:
+>>>>>>> f6f2a4f (Add readme)
 * `master`: Código estable y listo para producción.
 * `feature/`: Nuevas funcionalidades (Búsqueda, Paginación).
 * `improvement/`: Refactorizaciones arquitectónicas y optimizaciones de rendimiento.
@@ -59,12 +64,16 @@ Este proyecto sigue un modelo de ramificación inspirado en **Git Flow**:
 ---
 
 ## 🎨 Créditos y Origen de Datos
+<<<<<<< HEAD
 * **Diseño de Icono:** El icono de app personalizado fue creado específicamente para este challenge usando Apple [Icon Composer](https://developer.apple.com/icon-composer/).
+=======
+>>>>>>> f6f2a4f (Add readme)
 * **API de Imágenes:** Se ha utilizado [Robohash](https://robohash.org/) para la generación dinámica de los avatares de los robots.
 * **Fuente de Datos:** Debido a la inactividad de la API original de Marvel, se ha optado por utilizar un endpoint remoto con un dataset de empleados ficticio utilizado previamente en mi etapa de formación.
 
 ---
 
+<<<<<<< HEAD
 ## 📱 Capturas de pantalla
 | Vista Lista | Vista detalle | Búqueda | Vista sin conexión |
 | :---: | :---: | :---: |  :---: |
@@ -74,6 +83,10 @@ Este proyecto sigue un modelo de ramificación inspirado en **Git Flow**:
 
 ## ⚙️ Requisitos y Configuración
 * **iOS:** 17.0+
+=======
+## ⚙️ Requisitos y Configuración
+* **iOS:** 16.0+
+>>>>>>> f6f2a4f (Add readme)
 * **Swift:** 6.0 (Compatible con Concurrencia Estricta)
 * **Xcode Previews:** El archivo `test_robots.json` está incluido en el **Target Membership** de la App para asegurar que las Previews funcionen correctamente con datos de prueba.
 
@@ -141,7 +154,10 @@ This project follows a **Git Flow** inspired branching model:
 ---
 
 ## 🎨 Credits & Data Sources
+<<<<<<< HEAD
 * **Icon Design:** The custom app icon was created specifically for this challenge using Apple [Icon Composer](https://developer.apple.com/icon-composer/).
+=======
+>>>>>>> f6f2a4f (Add readme)
 * **Image API:** [Robohash](https://robohash.org/) was used for the dynamic generation of robot avatars.
 * **Data Source:** Due to the unavailability of the original Marvel API, I opted for a remote endpoint featuring a employees dataset previously used during my academy training.
 
