@@ -21,11 +21,11 @@ struct RobotListView: View {
                 }
                 .navigationTitle("WallaRobots")
                 .task {
-                    try? await viewModel.initialLoad()
+                    await viewModel.initialLoad()
                 }
                 if viewModel.showNetworkError && viewModel.filteredRobots.isEmpty {
                     NetworkErrorView {
-                        try? await viewModel.initialLoad()
+                        await viewModel.initialLoad()
                     }
                 }
             }
