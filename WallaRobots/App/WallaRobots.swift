@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import OSLog
 
 @main
 struct WallaRobots: App {
@@ -21,7 +22,7 @@ struct WallaRobots: App {
         }
         .onChange(of: scenePhase) { oldPhase, newPhase in
             if newPhase == .background {
-                print("The App went to background, could save some data here.")
+                Logger.viewCycle.info("The App went to background, could save some data here.")
             }
         }
     }

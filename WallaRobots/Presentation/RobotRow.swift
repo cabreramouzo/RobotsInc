@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Kingfisher
+import OSLog
 
 struct RobotRow: View {
     let robot: Robot
@@ -67,7 +68,7 @@ private extension RobotRow {
             .onSuccess { result in
             }
             .onFailure { error in
-                print("Error leading avatar image: \(error)")
+                Logger.network.error("Error loading avatar image: \(error)")
             }
             .resizable()
             .scaledToFill()
