@@ -42,14 +42,12 @@ final class RobotViewModel: ObservableObject {
     }
 
     var filteredRobots: [Robot] {
-        if debouncedSearchText.isEmpty {
-            return robots
-        } else {
-            return allRobots.filter {
-                $0.fullName.localizedCaseInsensitiveContains(debouncedSearchText) ||
-                $0.username.localizedCaseInsensitiveContains(debouncedSearchText) ||
-                $0.email.localizedCaseInsensitiveContains(debouncedSearchText)
-            }
+        if debouncedSearchText.isEmpty { return robots }
+
+        return allRobots.filter {
+            $0.fullName.localizedCaseInsensitiveContains(debouncedSearchText) ||
+            $0.username.localizedCaseInsensitiveContains(debouncedSearchText) ||
+            $0.email.localizedCaseInsensitiveContains(debouncedSearchText)
         }
     }
 
