@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E918B55C2F991E6C009520CC /* InlineSnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = E918B55B2F991E6C009520CC /* InlineSnapshotTesting */; };
+		E918B55E2F991E6C009520CC /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = E918B55D2F991E6C009520CC /* SnapshotTesting */; };
+		E918B5602F991E6C009520CC /* SnapshotTestingCustomDump in Frameworks */ = {isa = PBXBuildFile; productRef = E918B55F2F991E6C009520CC /* SnapshotTestingCustomDump */; };
 		E94BDA5B2F96250400D9D1EE /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = E94BDA5A2F96250400D9D1EE /* Kingfisher */; };
 /* End PBXBuildFile section */
 
@@ -77,6 +80,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E918B5602F991E6C009520CC /* SnapshotTestingCustomDump in Frameworks */,
+				E918B55C2F991E6C009520CC /* InlineSnapshotTesting in Frameworks */,
+				E918B55E2F991E6C009520CC /* SnapshotTesting in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -162,6 +168,9 @@
 			);
 			name = WallaRobotsTests;
 			packageProductDependencies = (
+				E918B55B2F991E6C009520CC /* InlineSnapshotTesting */,
+				E918B55D2F991E6C009520CC /* SnapshotTesting */,
+				E918B55F2F991E6C009520CC /* SnapshotTestingCustomDump */,
 			);
 			productName = WallaRobotsTests;
 			productReference = E9E8FF3C2F92BD8700CEA57C /* WallaRobotsTests.xctest */;
@@ -224,6 +233,7 @@
 			mainGroup = 1A0E3A8C2862F7E200132FCB;
 			packageReferences = (
 				A66389F12DCE202500466318 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				E918B55A2F991E6C009520CC /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */,
 			);
 			productRefGroup = 1A0E3A962862F7E200132FCB /* Products */;
 			projectDirPath = "";
@@ -643,9 +653,32 @@
 				minimumVersion = 7.2.4;
 			};
 		};
+		E918B55A2F991E6C009520CC /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-snapshot-testing";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.19.2;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		E918B55B2F991E6C009520CC /* InlineSnapshotTesting */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E918B55A2F991E6C009520CC /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
+			productName = InlineSnapshotTesting;
+		};
+		E918B55D2F991E6C009520CC /* SnapshotTesting */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E918B55A2F991E6C009520CC /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
+			productName = SnapshotTesting;
+		};
+		E918B55F2F991E6C009520CC /* SnapshotTestingCustomDump */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E918B55A2F991E6C009520CC /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
+			productName = SnapshotTestingCustomDump;
+		};
 		E94BDA5A2F96250400D9D1EE /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = A66389F12DCE202500466318 /* XCRemoteSwiftPackageReference "Kingfisher" */;
