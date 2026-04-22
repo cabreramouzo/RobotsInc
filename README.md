@@ -11,7 +11,7 @@ Esta aplicación es una implementación técnica para un listado y visualizador 
 
 ## 🚀 Arquitectura y Decisiones Técnicas
 
-### 1. MVVM + Clean Architecture (Capa de Servicio)
+### 1. MVVM
 Dado que la capa de presentación está construida íntegramente con **SwiftUI**, he elegido **MVVM** como patrón de diseño principal por su excelente integración con el flujo de datos reactivo del framework.
 
 * **Abstracción:** El acceso a los datos no se realiza directamente desde el ViewModel. He implementado un protocolo `RobotServiceProtocol` que define el contrato de datos, siguiendo principios de Clean Architecture.
@@ -60,8 +60,8 @@ He implementado flujos de trabajo automatizados mediante **GitHub Actions** para
 
 Esta configuración permite detectar errores de regresión de forma temprana y reduce la carga de revisión manual de estilo.
 
-![SwiftLint](https://github.com/TU_USUARIO/TU_REPO/actions/workflows/lint.yml/badge.svg)
-![iOS CI](https://github.com/TU_USUARIO/TU_REPO/actions/workflows/ios.yml/badge.svg)
+![SwiftLint](https://github.com/cabreramouzo/WallaRobots/actions/workflows/lint.yml/badge.svg)
+![iOS CI](https://github.com/cabreramouzo/WallaRobots/actions/workflows/ios.yml/badge.svg)
 
 ---
 
