@@ -23,6 +23,6 @@ jobs:
           xcodebuild test \
             -project WallaRobots.xcodeproj \
             -scheme WallaRobots \
-            -destination 'platform=iOS Simulator,name=iPhone 17,OS=20.2' \
+            -destination 'platform=iOS Simulator,name=iPhone 17,OS=26.4' \
             -enableCodeCoverage YES \
             clean build test
