@@ -102,9 +102,10 @@ This project follows a branching model inspired by **Git Flow**:
 
 <details>
 	<summary><b>🇪🇸 Versión en Español 🇪🇸</b></summary>
+
 # 🤖 WallaRobots Challenge
 
-Esta aplicación es una implementación técnica para un listado y visualizador de detalles de robots, enfocada en el alto desacoplamiento, la limpieza arquitectónica y un rendimiento optimizado en SwiftUI.
+Esta aplicación es una implementación para un listado y visualizador de detalles de robots, enfocada en el alto desacoplamiento, la limpieza arquitectónica y un rendimiento optimizado en SwiftUI.
 
  | App Icon | Dark | 
  | :--: | :--: |
