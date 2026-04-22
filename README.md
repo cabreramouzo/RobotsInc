@@ -46,6 +46,7 @@ I opted for a mixed approach to demonstrate versatility and tool proficiency:
 
 A baseline but robust testing strategy has been implemented:
 * **Unit Testing (Swift Testing & XCTest):** Focused on ViewModel logic, validating initial load, filtering, and pagination behavior.
+* **Integration (Swift Testing):** Focused on the entire ViewModel state, when performing several actions simulating the user interaction including debouncing when searching and pagination.
 * **UI Testing (XCUITest):** Integration tests to ensure navigation flow between list and detail views and data consistency.
 
 ---
@@ -151,6 +152,7 @@ Se ha optado por un enfoque mixto para demostrar versatilidad y un conocimiento 
 
 Se ha implementado una estrategia de pruebas básica pero sólida:
 * **Unit Testing (Swift Testing y XCTest):** Centrado en la lógica del ViewModel, validando la carga inicial, el filtrado y el comportamiento correcto de la paginación.
+* **Integration (Swift Testing):** Centrado en el estado global del ViewModel, cuando se ejecutan múltiples operaciones conjuntamente, que simulan una interacción completa del usuario, como buscar, debouncing y la paginación.
 * **UI Testing (XCUITest):** Pruebas de interfaz para asegurar el flujo de navegación entre la lista y las pantallas de detalle, verificando la consistencia de los datos.
 
 ---
