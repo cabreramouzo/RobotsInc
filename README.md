@@ -6,30 +6,34 @@ Esta aplicación es una implementación técnica para un listado y visualizador 
  | App Icon | Dark | 
  | :--: | :--: |
  | <img src="WallaRobots/Resources/Assets.xcassets/AppIcon.appiconset/WallaRobots-iOS-Default-1024x1024%401x.png" width="150" alt="App Icon"> | <img src="WallaRobots/Resources/Assets.xcassets/AppIcon.appiconset/WallaRobots-iOS-Dark-1024x1024%401x.png" width="150" alt="App Icon"> |
----
 
-## 🚀 Decisiones de Arquitectura
+ ---
 
-### 1. MVVM + Patrón de Repositorio
-Se ha utilizado el patrón **MVVM** junto con una capa de servicio para garantizar una clara separación de responsabilidades:
-* **Capa de Servicio:** El acceso a los datos se abstrae mediante el protocolo `RobotServiceProtocol`, lo que facilita la inyección de dependencias.
-* **Patrón de Repositorio:** Se utiliza un servicio de datos que puede ser sustituido por un simulacro (*mock*) (`FakeRobotService`) para las pruebas unitarias y las Xcode Previews, garantizando un entorno de desarrollo determinista.
+## 🚀 Arquitectura y Decisiones Técnicas
+
+### 1. MVVM
+Dado que la capa de presentación está construida íntegramente con **SwiftUI**, he elegido **MVVM** como patrón de diseño principal por su excelente integración con el flujo de datos reactivo del framework.
+
+* **Abstracción:** El acceso a los datos no se realiza directamente desde el ViewModel. He implementado un protocolo `RobotServiceProtocol` que define el contrato de datos, siguiendo principios de Clean Architecture.
+* **Inyección de Dependencias:** Esta estructura me permite desacoplar la lógica de red. En las **Xcode Previews** y en los tests unitarios, inyecto un `FakeRobotService` que utiliza un JSON local, asegurando un entorno de desarrollo rápido y sin dependencias de servicios externos.
 
 ### 2. Optimización de Renderizado (Identidad de la Vista)
-Una decisión clave fue extraer la celda `RobotRow` a un **`struct` independiente**:
-* **Rendimiento:** Al desacoplar la celda del cuerpo principal de la lista, permitimos que el motor de renderizado de SwiftUI realice comparaciones de igualdad sobre el modelo de datos. Esto evita la ejecución redundante del `body` en las celdas que no han sufrido cambios durante las actualizaciones de estado (como el filtrado por búsqueda), garantizando un scroll fluido y sin saltos.
+Una decisión clave para el rendimiento fue extraer la celda `RobotRow` a un **`struct` independiente**.
 
-### 3. Gestión de Estado y Propagación de Datos
-Se ha implementado una jerarquía de estado robusta basada en las últimas buenas prácticas de Apple:
-* **`@StateObject`**: Inicializado en la vista raíz (`RobotListView`) para asegurar que el ViewModel persista correctamente durante todo el ciclo de vida de la pantalla.
-* **`@EnvironmentObject`**: Las subvistas (como `RobotRow`) sintonizan el ViewModel a través del entorno. Esto evita el **Prop Drilling** (pasar dependencias a través de múltiples inicializadores de forma innecesaria) y asegura que todas las celdas interactúen con la misma instancia para la paginación sincronizada.
+Al separar las celdas del cuerpo principal de la lista, el motor de renderizado de SwiftUI puede gestionar mejor la identidad de las vistas. Esto optimiza el cálculo del `body` y evita que se repinten filas innecesariamente cuando el usuario interactúa con la barra de búsqueda, garantizando un scroll fluido incluso con listas extensas.
+
+### 3. Flujo de Datos y Gestión de Estado
+Para la propagación de datos, he optado por una jerarquía que prioriza la consistencia y la limpieza del código:
+
+* **`@StateObject`**: Lo utilizo en la vista raíz (`RobotListView`) para asegurar que el ViewModel persista correctamente y no se reinicie durante el ciclo de vida de la pantalla.
+* **`@EnvironmentObject`**: En lugar de pasar el ViewModel manualmente a cada subvista, lo inyecto en el entorno. Esto elimina el **Prop Drilling**, manteniendo los inicializadores de las vistas mucho más limpios y facilitando que componentes profundos (como la lógica de paginación en las celdas) accedan a la misma instancia de datos.
 
 ---
 
 ## 🛠️ Tecnologías y Estrategias
 
 ### 1. Gestión Híbrida de Imágenes
-Se ha optado por un enfoque mixto para demostrar versatilidad y un conocimiento profundo de las herramientas:
+Se ha optado por un enfoque mixto para demostrar versatilidad y un conocimiento de las herramientas:
 * **Kingfisher (Lista):** Utilizado en el listado para aprovechar su gestión de **caché persistente en disco y memoria**, evitando descargas redundantes. También se beneficia de la **cancelación automática** (deteniendo las descargas cuando una celda sale de la pantalla), optimizando el ancho de banda y la duración de la batería.
 * **AsyncImage (Detalle):** Se utiliza el framework nativo en la vista de detalle para demostrar el dominio de las herramientas estándar de Apple cuando no se requiere una lógica de caché compleja.
 
@@ -47,6 +51,20 @@ Se ha implementado una estrategia de pruebas básica pero sólida:
 
 ---
 
+## ⚙️ Integración Continua (CI/CD)
+
+He implementado flujos de trabajo automatizados mediante **GitHub Actions** para asegurar la estabilidad del proyecto en cada `Pull Request` y `push` a la rama principal:
+
+* **SwiftLint Workflow:** Automatización del análisis de estilo de código. Esto garantiza que cualquier contribución respete las reglas de formato y buenas prácticas definidas, manteniendo un código limpio y legible de forma uniforme.
+* **Unit & UI Testing Workflow:** Ejecución automatizada de la suite de tests en un entorno de macOS 26 con Xcode 26.3. El workflow compila el proyecto y lanza los tests en un simulador iPhone, bloqueando el merge si alguna prueba falla.
+
+Esta configuración permite detectar errores de regresión de forma temprana y reduce la carga de revisión manual de estilo.
+
+![SwiftLint](https://github.com/cabreramouzo/WallaRobots/actions/workflows/lint.yml/badge.svg)
+![iOS CI](https://github.com/cabreramouzo/WallaRobots/actions/workflows/build_test.yml/badge.svg)
+
+---
+
 ## 🌳 Estrategia de Git
 Este proyecto sigue un modelo de ramificación inspirado en **Git Flow**:
 * `master`: Código estable y listo para producción.
@@ -59,9 +77,9 @@ Este proyecto sigue un modelo de ramificación inspirado en **Git Flow**:
 ---
 
 ## 🎨 Créditos y Origen de Datos
-* **Diseño de Icono:** El icono de app personalizado fue creado específicamente para este challenge usando Apple [Icon Composer](https://developer.apple.com/icon-composer/).
+* **Diseño del Icono:** El icono de app personalizado fue creado específicamente para este challenge usando Apple [Icon Composer](https://developer.apple.com/icon-composer/).
 * **API de Imágenes:** Se ha utilizado [Robohash](https://robohash.org/) para la generación dinámica de los avatares de los robots.
-* **Fuente de Datos:** Debido a la inactividad de la API original de Marvel, se ha optado por utilizar un endpoint remoto con un dataset de empleados ficticio utilizado previamente en mi etapa de formación.
+* **Fuente de Datos:** Debido a la API original de Marvel no funcionaba correctamente, se ha optado por utilizar un endpoint remoto con un dataset de empleados ficticio utilizado previamente en mi etapa de formación.
 
 ---
 
@@ -83,83 +101,3 @@ Este proyecto sigue un modelo de ramificación inspirado en **Git Flow**:
 1. Clona el repositorio.
 2. Abre `WallaRobots.xcodeproj`.
 3. Compila y ejecuta. El proyecto gestiona las dependencias (Kingfisher) mediante Swift Package Manager automáticamente.
-
-# English version 🇬🇧
-# 🤖 WallaRobots Challenge
-
-This application is a technical implementation for a robot listing and detail viewer, focused on high decoupling, architectural cleanliness, and optimized SwiftUI performance.
-
----
-
-## 🚀 Architectural Decisions
-
-### 1. MVVM + Repository Pattern
-The **MVVM** pattern was used alongside a service layer to ensure a clear separation of concerns:
-* **Service Layer:** Data access is abstracted via the `RobotServiceProtocol`, facilitating dependency injection.
-* **Repository Pattern:** A data service is used that can be substituted by a mock (`FakeRobotService`) for unit testing and Xcode Previews, ensuring a deterministic development environment.
-
-### 2. Rendering Optimization (View Identity)
-To ensure a smooth, stutter-free scroll, the `RobotRow` was extracted into a **standalone `struct`**:
-* **Performance:** By decoupling the cell from the main list body, we allow the SwiftUI rendering engine to perform equality comparisons on the data model. This prevents redundant `body` execution for cells that haven't changed during state updates (such as search filtering).
-
-### 3. State Management & Data Propagation
-* **`@StateObject`**: Manages the ViewModel lifecycle in the main view.
-* **`@EnvironmentObject`**: Used to inject the ViewModel into the cells. This avoids **Prop Drilling** (passing dependencies through multiple initializers unnecessarily) and ensures all cells interact with the same instance for synchronized pagination.
-
----
-
-## 🛠️ Technologies & Strategies
-
-### 1. Hybrid Image Management
-A mixed approach was chosen to demonstrate versatility and deep understanding of the tools:
-* **Kingfisher (List):** Used in the list to leverage its **persistent disk and memory caching**, avoiding redundant downloads. It also benefits from **automatic cancellation** (stopping downloads when a cell scrolls out of view), optimizing bandwidth and battery life.
-* **AsyncImage (Detail):** The native framework is used in the detail view to demonstrate mastery of standard Apple tools when complex caching logic is not required.
-
-### 2. Concurrency & Reactivity
-* **Swift 6 & MainActor:** The project is configured for Swift 6 concurrency mode, ensuring thread safety through property isolation on the `MainActor`.
-* **Combine (Search Debouncing):** A 0.3-second `debounce` operator is implemented for searches. This improves user experience by avoiding expensive calculations on every keystroke.
-
----
-
-## 🧪 Testing
-
-A basic but solid testing strategy was implemented:
-* **Unit Testing (Swift Testing & XCTest):** Focused on ViewModel logic, validating initial loading, filtering, and the correct behavior of pagination.
-* **UI Testing (XCUITest):** Interface tests to ensure the navigation flow between the list and detail screens, verifying data consistency.
-
----
-
-## 🌳 Git Strategy
-This project follows a **Git Flow** inspired branching model:
-* `master`: Stable production-ready code.
-* `feature/`: New functionalities (Search, Pagination).
-* `improvement/`: Architectural refactors and performance optimizations.
-* `fix/`: Bug fixes and UI adjustments.
-
-*Branches have been intentionally preserved to showcase the incremental development process and architectural evolution of the project.*
-
----
-
-## 🎨 Credits & Data Sources
-* **Icon Design:** The custom app icon was created specifically for this challenge using Apple [Icon Composer](https://developer.apple.com/icon-composer/).
-* **Image API:** [Robohash](https://robohash.org/) was used for the dynamic generation of robot avatars.
-* **Data Source:** Due to the unavailability of the original Marvel API, I opted for a remote endpoint featuring a employees dataset previously used during my academy training.
-
----
-
-## 📱 Screenshots
-| List View | Detail View | Search | Network Error |
-| :---: | :---: | :---: |  :---: |
-| <img src="WallaRobots/Resources/Screenshots/RobotList.png" width="200" alt="Robot list"> | <img src="WallaRobots/Resources/Screenshots/RobotDetail.png" width="200" alt="Robot Detail"> | <img src="WallaRobots/Resources/Screenshots/Search.png" width="200" alt="Search view"> | <img src="WallaRobots/Resources/Screenshots/NoInternet.png" width="200" alt="No Internet view"> |
-
-## ⚙️ Requirements & Setup
-* **iOS:** 17.0+
-* **Swift:** 6.0
-* **Xcode Previews:** The `test_robots.json` file is included in the App's **Target Membership** to ensure Previews function correctly with mock data.
-
----
-
-### Installation Instructions
-1. Clone the repository.
-2. Open `WallaRobots.xcodeproj`.
-3. Build and run. The project manages dependencies (Kingfisher) via Swift Package Manager automatically.
