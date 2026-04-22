@@ -48,6 +48,7 @@ A baseline but robust testing strategy has been implemented:
 * **Unit Testing (Swift Testing & XCTest):** Focused on ViewModel logic, validating initial load, filtering, and pagination behavior.
 * **Integration (Swift Testing):** Focused on the entire ViewModel state, when performing several actions simulating the user interaction including debouncing when searching and pagination.
 * **UI Testing (XCUITest):** Integration tests to ensure navigation flow between list and detail views and data consistency.
+* **Snapshot Testing:** Using swift-snapshot-testing by [Pointfree](https://github.com/pointfreeco/swift-snapshot-testing) to test some screens using snapshots.
 
 ---
 
@@ -69,6 +70,8 @@ This project follows a branching model inspired by **Git Flow**:
 * `feature/`: New functionalities (Search, Pagination).
 * `improvement/`: Architectural refactors and performance optimizations.
 * `fix/`: Bug fixes and UI adjustments.
+
+Configured GIT-LFS to optimize the size of the repository (snapshot images).
 
 *Branches have been intentionally preserved to showcase the incremental development process.*
 
@@ -154,6 +157,7 @@ Se ha implementado una estrategia de pruebas básica pero sólida:
 * **Unit Testing (Swift Testing y XCTest):** Centrado en la lógica del ViewModel, validando la carga inicial, el filtrado y el comportamiento correcto de la paginación.
 * **Integration (Swift Testing):** Centrado en el estado global del ViewModel, cuando se ejecutan múltiples operaciones conjuntamente, que simulan una interacción completa del usuario, como buscar, debouncing y la paginación.
 * **UI Testing (XCUITest):** Pruebas de interfaz para asegurar el flujo de navegación entre la lista y las pantallas de detalle, verificando la consistencia de los datos.
+* **Snapshot Testing:** Se ha usado swift-snapshot-testing de [Pointfree](https://github.com/pointfreeco/swift-snapshot-testing) para testear las diferentes vistas.
 
 ---
 
@@ -177,6 +181,8 @@ Este proyecto sigue un modelo de ramificación inspirado en **Git Flow**:
 * `feature/`: Nuevas funcionalidades (Búsqueda, Paginación).
 * `improvement/`: Refactorizaciones arquitectónicas y optimizaciones de rendimiento.
 * `fix/`: Corrección de errores y ajustes de interfaz.
+
+También se ha configurado GIT-LFS para optimizar el tamaño del repositoio (imágenes snapshots).
 
 *Se han mantenido las ramas de forma intencionada para mostrar el proceso de desarrollo incremental y la evolución arquitectónica del proyecto.*
 
@@ -206,5 +212,5 @@ Este proyecto sigue un modelo de ramificación inspirado en **Git Flow**:
 ### Instrucciones de Instalación
 1. Clona el repositorio.
 2. Abre `WallaRobots.xcodeproj`.
-3. Compila y ejecuta. El proyecto gestiona las dependencias (Kingfisher) mediante Swift Package Manager automáticamente.
+3. Compila y ejecuta. El proyecto gestiona las dependencias (Kingfisher y otras) mediante Swift Package Manager automáticamente.
 </details>

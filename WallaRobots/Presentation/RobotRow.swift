@@ -60,22 +60,29 @@ private extension RobotRow {
 
     @ViewBuilder
     func robotAvatarImage(robot: Robot) -> some View {
-        KFImage(robot.avatar)
-            .placeholder {
-                robotAvatarPlaceholder()
-            }
-            .retry(maxCount: 3, interval: .seconds(1))
-            .onSuccess { result in
-            }
-            .onFailure { error in
-                Logger.network.error("Error loading avatar image: \(error)")
-            }
-            .resizable()
-            .scaledToFill()
-            .frame(width: 50, height: 50)
-            .clipShape(Circle())
-            .accessibilityLabel("Avatar of \(robot.fullName)")
-            .id(robot.id)
+        if let avatarURL = robot.avatar {
+            KFImage(avatarURL)
+                .placeholder {
+                    robotAvatarPlaceholder()
+                }
+                .retry(maxCount: 3, interval: .seconds(1))
+                .onSuccess { result in
+                }
+                .onFailure { error in
+                    Logger.network.error("Error loading avatar image: \(error)")
+                }
+                .resizable()
+                .scaledToFill()
+                .frame(width: 50, height: 50)
+                .clipShape(Circle())
+                .accessibilityLabel("Avatar of \(robot.fullName)")
+                .id(robot.id)
+        } else {
+            robotAvatarPlaceholder()
+                .frame(width: 50, height: 50)
+                .clipShape(Circle())
+                .accessibilityLabel("Avatar of \(robot.fullName)")
+        }
     }
 
     @ViewBuilder
