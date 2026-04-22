@@ -81,6 +81,7 @@ Configured GIT-LFS to optimize the size of the repository (snapshot images).
 * **Icon Design:** Custom app icon created using Apple [Icon Composer](https://developer.apple.com/icon-composer/).
 * **Image API:** Using [Robohash](https://robohash.org/) for dynamic robot avatar generation.
 * **Data Source:** Due to the original Marvel API's unavailability, a remote endpoint with a dummy employee dataset from previous training stages was used.
+* **CI/CD Tooling:** [SwiftLint Action](https://github.com/marketplace/actions/github-action-for-swiftlint) (based on the work by **norio-nomura**), used to automate code style enforcement.
 
 ---
 
@@ -192,6 +193,7 @@ También se ha configurado GIT-LFS para optimizar el tamaño del repositoio (im�
 * **Diseño del Icono:** El icono de app personalizado fue creado específicamente para este challenge usando Apple [Icon Composer](https://developer.apple.com/icon-composer/).
 * **API de Imágenes:** Se ha utilizado [Robohash](https://robohash.org/) para la generación dinámica de los avatares de los robots.
 * **Fuente de Datos:** Debido a la API original de Marvel no funcionaba correctamente, se ha optado por utilizar un endpoint remoto con un dataset de empleados ficticio utilizado previamente en mi etapa de formación.
+* **CI/CD Tooling:** [SwiftLint Action](https://github.com/marketplace/actions/github-action-for-swiftlint) (basado en el trabajo de **norio-nomura**), para automatizar el forzado de estilo en el código.
 
 ---
 
