@@ -12,18 +12,10 @@ struct RobotDetailView: View {
     var body: some View {
         ScrollView {
             VStack(spacing: 20) {
-                AsyncImage(url: robot.avatar) { image in
-                    image
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .clipShape(Circle())
-                        .overlay(Circle().stroke(Color.gray.opacity(0.2), lineWidth: 4))
-                } placeholder: {
-                    ProgressView()
-                }
-                .frame(width: 200, height: 200)
-                .padding(.top, 20)
-                .accessibilityLabel("Avatar of \(robot.fullName)")
+                avatarView
+                    .frame(width: 200, height: 200)
+                    .padding(.top, 20)
+                    .accessibilityLabel("Avatar of \(robot.fullName)")
 
                 VStack(alignment: .leading, spacing: 12) {
                     Group {
@@ -64,6 +56,33 @@ struct RobotDetailView: View {
     }
 
     @ViewBuilder
+    private var avatarView: some View {
+        if let avatarURL = robot.avatar {
+            AsyncImage(url: avatarURL) { image in
+                image
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .clipShape(Circle())
+                    .overlay(Circle().stroke(Color.gray.opacity(0.2), lineWidth: 4))
+            } placeholder: {
+                ProgressView()
+            }
+        } else {
+            // Placeholder for tests/snapshots
+            ZStack {
+                Circle()
+                    .fill(Color.gray.opacity(0.2))
+                Image(systemName: "person.fill")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 80, height: 80)
+                    .foregroundColor(.gray)
+            }
+            .overlay(Circle().stroke(Color.gray.opacity(0.2), lineWidth: 4))
+        }
+    }
+
+    @ViewBuilder
     private func detailRow(label: String, value: String, icon: String) -> some View {
         HStack(alignment: .top) {
             Image(systemName: icon)
@@ -85,6 +104,6 @@ struct RobotDetailView: View {
                           email: "kaniko@gmail.com",
                           department: .humanResources,
                           address: "127.0.0.1",
-                          avatar: URL(string: "https://robohash.org/2.png?set=set1&size=180x180")!)
+                          avatar: URL(string: "https://robohash.org/2.png?set=set1&size=180x180"))
     RobotDetailView(robot: testRobot)
 }

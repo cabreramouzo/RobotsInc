@@ -46,7 +46,7 @@ struct Robot: Identifiable, Hashable, Decodable {
     let email: String
     let department: Department
     let address: String
-    let avatar: URL
+    let avatar: URL?
 
     // Stored properties with default random values (not in JSON)
     let price: Double
@@ -65,7 +65,7 @@ struct Robot: Identifiable, Hashable, Decodable {
     }
 
     // Deterministic initializer for testing and preview purposes
-    init(id: Int, username: String, firstName: String, lastName: String, gender: Gender, email: String, department: Department, address: String, avatar: URL, price: Double = Double.random(in: 1.0...1024.0), status: RobotStatus = [.new, .refurbished].randomElement() ?? .new) {
+    init(id: Int, username: String, firstName: String, lastName: String, gender: Gender, email: String, department: Department, address: String, avatar: URL? = nil, price: Double = Double.random(in: 1.0...1024.0), status: RobotStatus = [.new, .refurbished].randomElement() ?? .new) {
         self.id = id
         self.username = username
         self.firstName = firstName
@@ -91,7 +91,7 @@ struct Robot: Identifiable, Hashable, Decodable {
         email = try container.decode(String.self, forKey: .email)
         department = try container.decode(Department.self, forKey: .department)
         address = try container.decode(String.self, forKey: .address)
-        avatar = try container.decode(URL.self, forKey: .avatar)
+        avatar = try container.decodeIfPresent(URL.self, forKey: .avatar)
 
         // Generate random values for non-JSON properties
         price = Double.random(in: 1.0...1024.0)
