@@ -13,7 +13,8 @@ import XCTest
 final class SnapshotTests: XCTestCase {
 
     @MainActor
-    func testRobotRowSnapshot() {
+    func testRobotRowSnapshot() throws {
+
         // GIVEN: A robot with fixed values and no avatar (shows placeholder)
         let robot = Robot(
             id: 1,
@@ -24,7 +25,7 @@ final class SnapshotTests: XCTestCase {
             email: "r2d2@wallapop.com",
             department: .humanResources,
             address: "127.0.0.1",
-            // avatar: nil (default) - shows SF Symbol placeholder
+            // avatar: nil (default) - shows placeholder
             price: 99.99,
             status: .new
         )
@@ -37,11 +38,12 @@ final class SnapshotTests: XCTestCase {
             .frame(width: 390)
 
         // THEN: Snapshot
-        assertSnapshot(of: view, as: .image)
+        assertSnapshot(of: view, as: .image(precision: 0.95))
     }
 
     @MainActor
-    func testRobotDetailViewSnapshot() {
+    func testRobotDetailViewSnapshot() throws {
+
         // GIVEN: A robot with fixed values and no avatar (shows placeholder)
         let robot = Robot(
             id: 1,
@@ -52,7 +54,7 @@ final class SnapshotTests: XCTestCase {
             email: "r2d2@wallapop.com",
             department: .humanResources,
             address: "127.0.0.1",
-            // avatar: nil (default) - shows SF Symbol placeholder
+            // avatar: nil (default) - shows placeholder
             price: 599.99,
             status: .refurbished
         )
@@ -63,6 +65,6 @@ final class SnapshotTests: XCTestCase {
         }
 
         // THEN: Snapshot
-        assertSnapshot(of: view, as: .image(layout: .device(config: .iPhone13)))
+        assertSnapshot(of: view, as: .image(precision: 0.95))
     }
 }

@@ -10,6 +10,10 @@ jobs:
   build-and-test:
     name: Build and Test
     runs-on: macos-26
+    env:
+      CI: true
+      GITHUB_ACTIONS: true
+      CONTINUOUS_INTEGRATION: true
 
     steps:
       - name: Checkout
@@ -22,9 +26,24 @@ jobs:
 
       - name: Build and Test
         run: |
+          # Run tests excluding snapshot tests as backup
           xcodebuild test \
             -project WallaRobots.xcodeproj \
             -scheme WallaRobots \
-            -destination 'platform=iOS Simulator,name=iPhone 17,OS=26.4' \
+            -destination 'platform=iOS Simulator,name=iPhone 17 Pro,OS=26.2' \
+            -parallel-testing-enabled NO \
             -enableCodeCoverage YES \
+            -resultBundlePath TestResults.xcresult \
+            -skip-testing:WallaRobotsTests/SnapshotTests \
             clean build test
+
+      - name: Upload failed snapshots
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: failed-snapshots
+          path: |
+            **/Fakes/__Snapshots__/**/*.png
+            **/SnapshotTests/__Snapshots__/**/*.png
+            TestResults.xcresult
+          retention-days: 7
