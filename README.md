@@ -61,7 +61,7 @@ He implementado flujos de trabajo automatizados mediante **GitHub Actions** para
 Esta configuración permite detectar errores de regresión de forma temprana y reduce la carga de revisión manual de estilo.
 
 ![SwiftLint](https://github.com/cabreramouzo/WallaRobots/actions/workflows/lint.yml/badge.svg)
-![iOS CI](https://github.com/cabreramouzo/WallaRobots/actions/workflows/ios.yml/badge.svg)
+![iOS CI](https://github.com/cabreramouzo/WallaRobots/actions/workflows/build_test.yml/badge.svg)
 
 ---
 
