@@ -23,21 +23,24 @@ final class RobotViewModel: ObservableObject {
     @Published var searchText = ""
     @Published var debouncedSearchText = ""
     private let debounceScheduler: RunLoop
+    private let debounceInterval: TimeInterval
 
     @Published var showNetworkError: Bool = false
 
     private var cancellables = Set<AnyCancellable>()
 
     init(service: RobotServiceProtocol = RobotService(),
-         searchDebounceScheduler: RunLoop = RunLoop.main) {
+         searchDebounceScheduler: RunLoop = RunLoop.main,
+         debounceInterval: TimeInterval = 0.3) {
         self.service = service
         self.debounceScheduler = searchDebounceScheduler
+        self.debounceInterval = debounceInterval
         setupSearchDebounce()
     }
 
     func setupSearchDebounce() {
         $searchText
-            .debounce(for: .seconds(0.3), scheduler: debounceScheduler)
+            .debounce(for: .seconds(debounceInterval), scheduler: debounceScheduler)
             .removeDuplicates()
             .assign(to: \.debouncedSearchText, on: self)
             .store(in: &cancellables)
