@@ -65,7 +65,19 @@ struct Robot: Identifiable, Hashable, Decodable {
     }
 
     // Deterministic initializer for testing and preview purposes
-    init(id: Int, username: String, firstName: String, lastName: String, gender: Gender, email: String, department: Department, address: String, avatar: URL? = nil, price: Double = Double.random(in: 1.0...1024.0), status: RobotStatus = [.new, .refurbished].randomElement() ?? .new) {
+    init(
+        id: Int,
+        username: String,
+        firstName: String,
+        lastName: String,
+        gender: Gender,
+        email: String,
+        department: Department,
+        address: String,
+        avatar: URL? = nil,
+        price: Double = Double.random(in: 1.0...1024.0),
+        status: RobotStatus = [.new, .refurbished].randomElement() ?? .new
+    ) {
         self.id = id
         self.username = username
         self.firstName = firstName
