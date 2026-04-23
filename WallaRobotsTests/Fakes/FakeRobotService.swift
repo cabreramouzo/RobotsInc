@@ -24,8 +24,10 @@ final class FakeRobotService: RobotServiceProtocol {
     
     // Helper to load JSON locally
     static func loadMockRobots() -> [Robot] {
-        let json = Bundle(for: Self.self).url(forResource: "test_robots", withExtension: "json")!
-        let jsonData = try! Data(contentsOf: json)
+        guard let json = Bundle(for: Self.self).url(forResource: "test_robots", withExtension: "json"),
+              let jsonData = try? Data(contentsOf: json) else {
+            return []
+        }
         
         let decoder = JSONDecoder()
         return (try? decoder.decode([Robot].self, from: jsonData)) ?? []

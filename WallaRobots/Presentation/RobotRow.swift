@@ -96,7 +96,17 @@ private extension RobotRow {
 }
 
 #Preview {
-    let r2d2 = Robot(id: 1, username: "r2d2", firstName: "R2", lastName: "D2", gender: .male, email: "r2d2@wallapop.com", department: .humanResources, address: "127.0.0.1", avatar: URL(string: "https://robohash.org/r2d2.png")!)
+    let r2d2 = Robot(
+        id: 1,
+        username: "r2d2",
+        firstName: "R2",
+        lastName: "D2",
+        gender: .male,
+        email: "r2d2@wallapop.com",
+        department: .humanResources,
+        address: "127.0.0.1",
+        avatar: URL(string: "https://robohash.org/r2d2.png")!
+    )
     RobotRow(robot: r2d2)
         .environmentObject(RobotViewModel(service: FakeRobotService.previewService))
 }
