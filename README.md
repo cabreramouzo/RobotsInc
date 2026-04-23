@@ -35,7 +35,7 @@ Automated workflows via **GitHub Actions** ensure project stability on every `Pu
 * **SwiftLint Workflow:** Automated code style analysis to ensure contributions adhere to defined best practices and maintain a clean, uniform codebase.
 * **Unit & UI Testing Workflow:** Automated test execution on macOS 26 with Xcode 26.3. The workflow builds and runs tests on an iPhone 17 simulator, blocking merges if any test fails.
 
-![SwiftLint](https://github.com/cabreramouzo/WallaRobots/actions/workflows/lint.yml/badge.svg)
+![SwiftLint](https://github.com/cabreramouzo/WallaRobots/actions/workflows/swiftlint.yml/badge.svg)
 ![iOS CI](https://github.com/cabreramouzo/WallaRobots/actions/workflows/build_test.yml/badge.svg)
 
 ---
