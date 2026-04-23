@@ -12,17 +12,18 @@ final class RobotPaginationTests: XCTestCase {
 
     @MainActor
     func testLoadMoreRobotsIncrementsList() async throws {
-        // GIVEN
+
+        // GIVEN: A viewModel with initial robots loaded
         let viewModel = RobotViewModel()
         await viewModel.initialLoad() // Loads first 20 robots
         let initialCount = viewModel.robots.count
 
-        // WHEN
+        // WHEN: User requests to load more robots
         viewModel.loadMoreRobots()
 
-        // THEN
+        // THEN: Robot count should increase and page should increment
         XCTAssertEqual(viewModel.robots.count, initialCount + 20, "The array should be increased by 20 elements")
-        XCTAssertEqual(viewModel.currentPage, 2)
+        XCTAssertEqual(viewModel.currentPage, 2, "Should be on page 2 after pagination")
     }
 }
 
