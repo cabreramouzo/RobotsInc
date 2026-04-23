@@ -33,9 +33,7 @@ struct RobotRow: View {
             .accessibilityHint("Double tap to view details of \(robot.fullName)")
             .onAppear {
                 if viewModel.searchText.isEmpty && robot.id == viewModel.filteredRobots.last?.id {
-                    Task {
-                        try? await viewModel.loadMoreRobots()
-                    }
+                    viewModel.loadMoreRobots()
                 }
             }
         }

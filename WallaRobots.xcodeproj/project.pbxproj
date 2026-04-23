@@ -102,7 +102,6 @@
 				E9E8FF312F92BD8600CEA57C /* WallaRobots */,
 				E9E8FF3F2F92BD8700CEA57C /* WallaRobotsTests */,
 				E9E8FF492F92BD8800CEA57C /* WallaRobotsUITests */,
-				E94BDA592F96250400D9D1EE /* Frameworks */,
 				1A0E3A962862F7E200132FCB /* Products */,
 			);
 			sourceTree = "<group>";
@@ -115,13 +114,6 @@
 				E9E8FF462F92BD8800CEA57C /* WallaRobotsUITests.xctest */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		E94BDA592F96250400D9D1EE /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
