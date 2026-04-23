@@ -1,0 +1,60 @@
+# SwiftLint configuration for WallaRobots
+# Documentation: https://github.com/realm/SwiftLint
+
+# Paths to include during linting. `--path` is ignored if present.
+included:
+  - WallaRobots/
+  - WallaRobotsTests/
+  - WallaRobotsUITests/
+
+# Paths to ignore during linting. Takes precedence over `included`.
+excluded:
+  - Carthage/
+  - Pods/
+  - .build/
+
+# Configurable rules can be customized from this configuration file.
+# Binary rules can be turned on or off
+disabled_rules: # rule identifiers to exclude from running
+  - trailing_whitespace
+  - todo
+
+# Some rules are only opt-in
+opt_in_rules: # some rules are only opt-in
+  - empty_count
+
+# Rules configuration
+line_length:
+  warning: 120
+  error: 150
+  ignores_function_declarations: true
+  ignores_comments: true
+  ignores_urls: true
+
+function_body_length:
+  warning: 60
+  error: 100
+
+type_body_length:
+  warning: 300
+  error: 500
+
+file_length:
+  warning: 500
+  error: 1200
+
+cyclomatic_complexity:
+  warning: 10
+  error: 20
+
+identifier_name:
+  min_length: 2
+  max_length: 50
+  excluded:
+    - id
+    - x
+    - y
+
+# Rules that only exist in newer versions
+deployment_target:
+  iOS_deployment_target: 17.0
