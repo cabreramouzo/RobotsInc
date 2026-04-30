@@ -15,10 +15,6 @@ enum APIConfig {
     }
 }
 
-protocol RobotServiceProtocol {
-    func fetchRobots() async throws -> [Robot]
-}
-
 final class RobotService: RobotServiceProtocol {
 
     func fetchRobots() async throws -> [Robot] {
