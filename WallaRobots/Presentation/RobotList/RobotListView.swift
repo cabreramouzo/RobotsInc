@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct RobotListView: View {
-    @StateObject var viewModel = RobotViewModel()
+    @EnvironmentObject var viewModel: RobotViewModel
 
     var body: some View {
         NavigationStack {
@@ -38,10 +38,12 @@ struct RobotListView: View {
 // MARK: - Previews
 
 #Preview("List with data") {
-    RobotListView(viewModel: RobotViewModel(service: FakeRobotService.previewService))
+    RobotListView()
+        .environmentObject(RobotViewModel(service: FakeRobotService.previewService))
 }
 
 #Preview("Network error state") {
-    RobotListView(viewModel: RobotViewModel(service: FakeRobotService.error))
+    RobotListView()
+        .environmentObject(RobotViewModel(service: FakeRobotService.error))
 }
 
