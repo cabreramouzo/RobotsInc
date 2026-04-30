@@ -13,12 +13,12 @@ final class RobotViewModel: ObservableObject {
     @Published var robots: [Robot] = []
 
     private var allRobots: [Robot] = []
-    var isLoading: Bool = false
+    private(set) var isLoading: Bool = false
 
-    let service: RobotServiceProtocol
+    private let service: RobotServiceProtocol
 
-    let pageSize = 20
-    var currentPage = 0
+    private let pageSize = 20
+    private(set) var currentPage = 0
 
     @Published var searchText = ""
     @Published var debouncedSearchText = ""
@@ -38,13 +38,12 @@ final class RobotViewModel: ObservableObject {
         setupSearchDebounce()
     }
 
-    func setupSearchDebounce() {
+    private func setupSearchDebounce() {
         $searchText
             .debounce(for: .seconds(debounceInterval), scheduler: debounceScheduler)
             .removeDuplicates()
             .assign(to: \.debouncedSearchText, on: self)
             .store(in: &cancellables)
-
     }
 
     var filteredRobots: [Robot] {

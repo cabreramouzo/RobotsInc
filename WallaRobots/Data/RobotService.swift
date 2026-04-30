@@ -7,8 +7,8 @@
 
 import Foundation
 
-enum APIConfig {
-    static let baseURL = "https://acoding.academy/testData"
+private enum APIConfig {
+    private static let baseURL = "https://acoding.academy/testData"
 
     enum Endpoint {
         static let robots = "\(APIConfig.baseURL)/EmpleadosData.json"
