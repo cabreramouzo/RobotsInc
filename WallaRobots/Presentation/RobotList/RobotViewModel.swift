@@ -6,11 +6,11 @@
 //
 
 import SwiftUI
-import Combine
 import OSLog
 
-final class RobotViewModel: ObservableObject {
-    @Published var robots: [Robot] = []
+@Observable
+final class RobotViewModel {
+    var robots: [Robot] = []
 
     private var allRobots: [Robot] = []
     private(set) var isLoading: Bool = false
@@ -20,30 +20,13 @@ final class RobotViewModel: ObservableObject {
     private let pageSize = 20
     private(set) var currentPage = 0
 
-    @Published var searchText = ""
-    @Published var debouncedSearchText = ""
-    private let debounceScheduler: RunLoop
-    private let debounceInterval: TimeInterval
+    var searchText: String = ""
+    var debouncedSearchText: String = ""
 
-    @Published var showNetworkError: Bool = false
+    var showNetworkError: Bool = false
 
-    private var cancellables = Set<AnyCancellable>()
-
-    init(service: RobotServiceProtocol = RobotService(),
-         searchDebounceScheduler: RunLoop = RunLoop.main,
-         debounceInterval: TimeInterval = 0.3) {
+    init(service: RobotServiceProtocol = RobotService()) {
         self.service = service
-        self.debounceScheduler = searchDebounceScheduler
-        self.debounceInterval = debounceInterval
-        setupSearchDebounce()
-    }
-
-    private func setupSearchDebounce() {
-        $searchText
-            .debounce(for: .seconds(debounceInterval), scheduler: debounceScheduler)
-            .removeDuplicates()
-            .assign(to: \.debouncedSearchText, on: self)
-            .store(in: &cancellables)
     }
 
     var filteredRobots: [Robot] {
@@ -71,7 +54,6 @@ final class RobotViewModel: ObservableObject {
                 self.showNetworkError = true
             }
             Logger.network.error("Network error: \(urlError.localizedDescription)")
-
         } catch {
             Logger.network.error("Unexpected error fetching robots: \(error.localizedDescription)")
         }
@@ -81,7 +63,6 @@ final class RobotViewModel: ObservableObject {
 
     @MainActor
     func loadMoreRobots() {
-
         guard !isLoading && hasMoreData else { return }
 
         isLoading = true

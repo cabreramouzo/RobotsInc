@@ -7,21 +7,30 @@
 
 import SwiftUI
 
+private enum Constants {
+    static let searchDebounceInterval: Duration = .milliseconds(300)
+}
+
 struct RobotListView: View {
-    @EnvironmentObject var viewModel: RobotViewModel
+    @Environment(RobotViewModel.self) var viewModel
 
     var body: some View {
+        @Bindable var viewModel = viewModel
         NavigationStack {
             ZStack {
                 List {
                     ForEach(viewModel.filteredRobots, id: \.id) { robot in
                         RobotRow(robot: robot)
-                            .environmentObject(viewModel)
+                            .environment(viewModel)
                     }
                 }
                 .navigationTitle("WallaRobots")
                 .task {
                     await viewModel.initialLoad()
+                }
+                .task(id: viewModel.searchText) {
+                    try? await Task.sleep(for: Constants.searchDebounceInterval)
+                    viewModel.debouncedSearchText = viewModel.searchText
                 }
                 if viewModel.showNetworkError && viewModel.filteredRobots.isEmpty {
                     NetworkErrorView {
@@ -39,11 +48,10 @@ struct RobotListView: View {
 
 #Preview("List with data") {
     RobotListView()
-        .environmentObject(RobotViewModel(service: FakeRobotService.previewService))
+        .environment(RobotViewModel(service: FakeRobotService.previewService))
 }
 
 #Preview("Network error state") {
     RobotListView()
-        .environmentObject(RobotViewModel(service: FakeRobotService.error))
+        .environment(RobotViewModel(service: FakeRobotService.error))
 }
-

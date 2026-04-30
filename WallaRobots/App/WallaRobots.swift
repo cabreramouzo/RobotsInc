@@ -10,15 +10,15 @@ import OSLog
 
 @main
 struct WallaRobots: App {
-
-    @StateObject private var robotViewModel = RobotViewModel()
-
+    
+    @State private var robotViewModel = RobotViewModel()
+    
     @Environment(\.scenePhase) private var scenePhase
-
+    
     var body: some Scene {
         WindowGroup {
             RobotListView()
-                .environmentObject(robotViewModel)
+                .environment(robotViewModel)
         }
         .onChange(of: scenePhase) { oldPhase, newPhase in
             if newPhase == .background {

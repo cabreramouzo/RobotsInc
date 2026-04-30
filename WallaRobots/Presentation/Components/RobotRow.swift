@@ -11,7 +11,7 @@ import OSLog
 
 struct RobotRow: View {
     let robot: Robot
-    @EnvironmentObject var viewModel: RobotViewModel
+    @Environment(RobotViewModel.self) var viewModel
 
     var body: some View {
         NavigationLink {
@@ -108,6 +108,6 @@ private extension RobotRow {
         avatar: URL(string: "https://robohash.org/r2d2.png")!
     )
     RobotRow(robot: r2d2)
-        .environmentObject(RobotViewModel(service: FakeRobotService.previewService))
+        .environment(RobotViewModel(service: FakeRobotService.previewService))
 }
 
