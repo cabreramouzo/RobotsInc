@@ -40,7 +40,7 @@
 		E94BDA5D2F963B3100D9D1EE /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Fakes/FakeRobotService.swift,
+				Fakes/FakeRobotDataSource.swift,
 				Resources/test_robots.json,
 			);
 			target = E9E8FF2F2F92BD8600CEA57C /* WallaRobots */;
@@ -48,7 +48,7 @@
 		E964726D2F96EB6800EC7D32 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Fakes/FakeRobotService.swift,
+				Fakes/FakeRobotDataSource.swift,
 			);
 			target = E9E8FF3B2F92BD8700CEA57C /* WallaRobotsTests */;
 		};

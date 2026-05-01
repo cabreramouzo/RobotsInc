@@ -96,14 +96,14 @@ struct RobotDetailView: View {
     }
 }
 
-#Preview {
-    let testRobot = Robot(id: 2, username: "refurbu",
-                          firstName: "Kaniko",
-                          lastName: "Lastno",
-                          gender: .male,
-                          email: "kaniko@gmail.com",
-                          department: .humanResources,
-                          address: "127.0.0.1",
-                          avatar: URL(string: "https://robohash.org/2.png?set=set1&size=180x180"))
-    RobotDetailView(robot: testRobot)
-}
+//#Preview {
+//    let testRobot = Robot(id: 2, username: "refurbu",
+//                          firstName: "Kaniko",
+//                          lastName: "Lastno",
+//                          gender: .male,
+//                          email: "kaniko@gmail.com",
+//                          department: .humanResources,
+//                          address: "127.0.0.1",
+//                          avatar: URL(string: "https://robohash.org/2.png?set=set1&size=180x180"))
+//    RobotDetailView(robot: testRobot)
+//}

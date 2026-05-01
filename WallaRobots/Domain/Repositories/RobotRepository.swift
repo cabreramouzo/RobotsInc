@@ -9,8 +9,8 @@ final class RobotRepository: RobotRepositoryProtocol {
     private let dataSource: RobotDataSourceProtocol
 
     func fetch() async throws -> [Robot] {
-        let remoteData = try await dataSource.fetch()
-        return remoteData
+        let dtos = try await dataSource.fetch()
+        return dtos.map { $0.toDomain() }
     }
 
     init(dataSource: RobotDataSourceProtocol) {

@@ -7,5 +7,5 @@
 
 
 protocol RobotDataSourceProtocol {
-    func fetch() async throws -> [Robot]
+    func fetch() async throws -> [RobotDTO]
 }
