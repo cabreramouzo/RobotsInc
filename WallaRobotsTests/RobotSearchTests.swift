@@ -6,7 +6,6 @@
 //
 
 import XCTest
-import Combine
 @testable import WallaRobots
 
 final class RobotSearchTests: XCTestCase {
@@ -14,9 +13,9 @@ final class RobotSearchTests: XCTestCase {
     @MainActor
     func testSearchFiltersRobotsByName() async {
         // GIVEN: A viewModel with mocked robots
-        let mockService = FakeRobotService()
-        mockService.result = .success(FakeRobotService.loadMockRobots())
-        let viewModel = RobotViewModel(service: mockService)
+        let mockDataSource = FakeRobotDataSource()
+        mockDataSource.result = .success(FakeRobotDataSource.loadMockDTOs())
+        let viewModel = RobotViewModel(repository: RobotRepository(dataSource: mockDataSource))
 
         await viewModel.initialLoad()
 
@@ -39,9 +38,9 @@ final class RobotSearchTests: XCTestCase {
     @MainActor
     func testSearchWithEmptyTextReturnsAllRobots() async {
         // GIVEN: A viewModel with mocked robots
-        let mockService = FakeRobotService()
-        mockService.result = .success(FakeRobotService.loadMockRobots())
-        let viewModel = RobotViewModel(service: mockService)
+        let mockDataSource = FakeRobotDataSource()
+        mockDataSource.result = .success(FakeRobotDataSource.loadMockDTOs())
+        let viewModel = RobotViewModel(repository: RobotRepository(dataSource: mockDataSource))
 
         await viewModel.initialLoad()
 
@@ -58,9 +57,9 @@ final class RobotSearchTests: XCTestCase {
     @MainActor
     func testSearchByEmail() async {
         // GIVEN: A viewModel with mocked robots
-        let mockService = FakeRobotService()
-        mockService.result = .success(FakeRobotService.loadMockRobots())
-        let viewModel = RobotViewModel(service: mockService)
+        let mockDataSource = FakeRobotDataSource()
+        mockDataSource.result = .success(FakeRobotDataSource.loadMockDTOs())
+        let viewModel = RobotViewModel(repository: RobotRepository(dataSource: mockDataSource))
 
         await viewModel.initialLoad()
 
@@ -76,9 +75,9 @@ final class RobotSearchTests: XCTestCase {
     @MainActor
     func testSearchByUsername() async {
         // GIVEN: A viewModel with mocked robots
-        let mockService = FakeRobotService()
-        mockService.result = .success(FakeRobotService.loadMockRobots())
-        let viewModel = RobotViewModel(service: mockService)
+        let mockDataSource = FakeRobotDataSource()
+        mockDataSource.result = .success(FakeRobotDataSource.loadMockDTOs())
+        let viewModel = RobotViewModel(repository: RobotRepository(dataSource: mockDataSource))
 
         await viewModel.initialLoad()
 
@@ -95,9 +94,9 @@ final class RobotSearchTests: XCTestCase {
     @MainActor
     func testSearchNoResults() async {
         // GIVEN: A viewModel with mocked robots
-        let mockService = FakeRobotService()
-        mockService.result = .success(FakeRobotService.loadMockRobots())
-        let viewModel = RobotViewModel(service: mockService)
+        let mockDataSource = FakeRobotDataSource()
+        mockDataSource.result = .success(FakeRobotDataSource.loadMockDTOs())
+        let viewModel = RobotViewModel(repository: RobotRepository(dataSource: mockDataSource))
 
         await viewModel.initialLoad()
 
@@ -109,93 +108,68 @@ final class RobotSearchTests: XCTestCase {
     }
 
     // MARK: - Debounce Tests
+    // Note: The debounce logic lives in RobotListView via .task(id: viewModel.searchText)
+    // These tests verify the ViewModel behavior when debouncedSearchText is updated by the View
 
     @MainActor
-    func testSearchDebounceDelaysUpdate() async {
-        // GIVEN: A viewModel with REAL debounce (0.3s) - using default transform
-        let mockService = FakeRobotService()
-        mockService.result = .success(FakeRobotService.loadMockRobots())
-        let viewModel = RobotViewModel(service: mockService) // Uses default debounce
+    func testSearchTextDoesNotImmediatelyUpdateFilteredRobots() async {
+        // GIVEN: A viewModel with mocked robots
+        let mockDataSource = FakeRobotDataSource()
+        mockDataSource.result = .success(FakeRobotDataSource.loadMockDTOs())
+        let viewModel = RobotViewModel(repository: RobotRepository(dataSource: mockDataSource))
+
+        await viewModel.initialLoad()
+        let initialCount = viewModel.filteredRobots.count
+
+        // WHEN: searchText changes (simulating user typing, before the View's debounce fires)
+        viewModel.searchText = "Hadley"
+
+        // THEN: filteredRobots should NOT change yet - debouncedSearchText is still empty
+        XCTAssertEqual(viewModel.debouncedSearchText, "", "View hasn't fired debounce yet")
+        XCTAssertEqual(viewModel.filteredRobots.count, initialCount, "filteredRobots should not change until debouncedSearchText is updated")
+    }
+
+    @MainActor
+    func testDebouncedSearchTextUpdatesFilteredRobots() async {
+        // GIVEN: A viewModel with mocked robots
+        let mockDataSource = FakeRobotDataSource()
+        mockDataSource.result = .success(FakeRobotDataSource.loadMockDTOs())
+        let viewModel = RobotViewModel(repository: RobotRepository(dataSource: mockDataSource))
 
         await viewModel.initialLoad()
 
-        // WHEN: User types rapidly (simulating fast typing)
+        // WHEN: The View fires the debounce and updates debouncedSearchText (simulating .task(id:))
+        viewModel.searchText = "Hadley"
+        viewModel.debouncedSearchText = viewModel.searchText  // simulates View's .task(id:) completion
+
+        // THEN: filteredRobots should now be filtered
+        XCTAssertFalse(viewModel.filteredRobots.isEmpty, "Should have results for 'Hadley'")
+        XCTAssertTrue(viewModel.filteredRobots.allSatisfy {
+            $0.fullName.localizedCaseInsensitiveContains("Hadley")
+        }, "filteredRobots should only contain robots matching 'Hadley'")
+    }
+
+    @MainActor
+    func testOnlyFinalDebouncedValueAffectsFilteredRobots() async {
+        // GIVEN: A viewModel with mocked robots
+        let mockDataSource = FakeRobotDataSource()
+        mockDataSource.result = .success(FakeRobotDataSource.loadMockDTOs())
+        let viewModel = RobotViewModel(repository: RobotRepository(dataSource: mockDataSource))
+
+        await viewModel.initialLoad()
+
+        // WHEN: User types rapidly (intermediate values never reach debouncedSearchText)
+        // and only the final value is committed by the View's debounce
         viewModel.searchText = "H"
         viewModel.searchText = "Ha"
         viewModel.searchText = "Had"
         viewModel.searchText = "Hadl"
         viewModel.searchText = "Hadley"
+        viewModel.debouncedSearchText = viewModel.searchText  // only final value committed
 
-        // THEN: debouncedSearchText should NOT be updated immediately
-        XCTAssertEqual(viewModel.debouncedSearchText, "", "Debounce should delay the update")
-    }
-
-    @MainActor
-    func testSearchDebounceWithImmediateTransform() {
-        // GIVEN: A viewModel with minimal debounce (for testing)
-        let mockService = FakeRobotService()
-        mockService.result = .success(FakeRobotService.loadMockRobots())
-        let viewModel = RobotViewModel(
-            service: mockService,
-            debounceInterval: 0
-        )
-
-        let expectation = XCTestExpectation(description: "Debounce updates debouncedSearchText")
-
-        let cancellable = viewModel.$debouncedSearchText
-            .dropFirst()
-            .sink { value in
-                if value == "Hadley" {
-                    expectation.fulfill()
-                }
-            }
-
-        // WHEN: User types a search term
-        viewModel.searchText = "Hadley"
-
-        // THEN: Wait for debounce to complete
-        wait(for: [expectation], timeout: 1.0)
-
-        XCTAssertEqual(viewModel.debouncedSearchText, "Hadley")
-
-        cancellable.cancel()
-    }
-
-    @MainActor
-    func testSearchDebounceOnlyFinalValueIsUsed() {
-        // GIVEN: A viewModel with REAL debounce to test that intermediate values are filtered
-        let mockService = FakeRobotService()
-        mockService.result = .success(FakeRobotService.loadMockRobots())
-        let viewModel = RobotViewModel(service: mockService, debounceInterval: 0)
-
-        var receivedValues: [String] = []
-        let expectation = XCTestExpectation(description: "Debounce emits only final value")
-
-        let cancellable = viewModel.$debouncedSearchText
-            .dropFirst() // Ignore initial empty value
-            .sink { value in
-                receivedValues.append(value)
-                if value == "Hadley" {
-                    expectation.fulfill()
-                }
-            }
-
-        // WHEN: User types rapidly
-        viewModel.searchText = "H"
-        viewModel.searchText = "Ha"
-        viewModel.searchText = "Had"
-        viewModel.searchText = "Hadl"
-        viewModel.searchText = "Hadley"
-
-        // Run the RunLoop to allow debounce to complete
-        RunLoop.main.run(until: Date().addingTimeInterval(0.5))
-
-        wait(for: [expectation], timeout: 1.0)
-
-        // THEN: Only the final value should have been emitted (debounce filters intermediate values)
-        XCTAssertEqual(receivedValues.count, 1, "Debounce should only emit the final value, not intermediate ones")
-        XCTAssertEqual(receivedValues.first, "Hadley")
-
-        cancellable.cancel()
+        // THEN: filteredRobots reflects only the final search value
+        XCTAssertTrue(viewModel.filteredRobots.allSatisfy {
+            $0.fullName.localizedCaseInsensitiveContains("Hadley")
+        }, "Only the final debounced value should affect filteredRobots")
     }
 }

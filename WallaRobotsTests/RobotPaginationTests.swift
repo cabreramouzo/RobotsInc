@@ -14,7 +14,9 @@ final class RobotPaginationTests: XCTestCase {
     func testLoadMoreRobotsIncrementsList() async throws {
 
         // GIVEN: A viewModel with initial robots loaded
-        let viewModel = RobotViewModel()
+        let mockDataSource = FakeRobotDataSource()
+        mockDataSource.result = .success(FakeRobotDataSource.loadMockDTOs())
+        let viewModel = RobotViewModel(repository: RobotRepository(dataSource: mockDataSource))
         await viewModel.initialLoad() // Loads first 20 robots
         let initialCount = viewModel.robots.count
 
