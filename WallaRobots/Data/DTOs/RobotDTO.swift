@@ -65,7 +65,7 @@ extension RobotDTO {
             username: username,
             firstName: first_name,
             lastName: last_name,
-            gender: Gender(rawValue: gender) ?? .male, // Validación
+            gender: Gender(rawValue: gender) ?? .male,
             email: email,
             department: Department(rawValue: department) ?? .engineering,
             address: address,
