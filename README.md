@@ -16,7 +16,7 @@ My main focus was writing clean, testable, and maintainable code with a clear se
 
 To demonstrate versatility, I used a hybrid image loading strategy: Kingfisher for the main list (leveraging its robust caching) and AsyncImage for the detail view.
 
-Finally, I leveraged Swift 6 concurrency features to ensure thread safety and a responsive UI, along with Combine’s debounce operator to optimize search performance.
+Finally, I leveraged Swift 6 concurrency features to ensure thread safety and a responsive UI, along with a debounce strategy to optimize search performance.
 
 ---
 
@@ -60,7 +60,7 @@ Configured GIT-LFS to optimize the size of the repository (snapshot images).
 ## 📱 Screenshots
 | List View | Detail View | Search | Offline View |
 | :---: | :---: | :---: |  :---: |
-| <img src="WallaRobots/Resources/Screenshots/RobotList.png" width="200" alt="Robot list"> | <img src="WallaRobots/Resources/Screenshots/RobotDetail.png" width="200" alt="Robot Detail"> | <img src="WallaRobots/Resources/Screenshots/Search.png" width="200" alt="Search view"> | <img src="WallaRobots/Resources/Screenshots/NoInternet.png" width="200" alt="No Internet view"> |
+| <img src="Screenshots/RobotList.png" width="200" alt="Robot list"> | <img src="Screenshots/RobotDetail.png" width="200" alt="Robot Detail"> | <img src="Screenshots/Search.png" width="200" alt="Search view"> | <img src="Screenshots/NoInternet.png" width="200" alt="No Internet view"> |
 
 ---
 
@@ -70,6 +70,12 @@ Configured GIT-LFS to optimize the size of the repository (snapshot images).
 * **Analytics & Observability:** Integrating analytics to track user interactions and identify areas for improvement.
 * **Search Enhancements:** Implementing advanced search features such as filtering by robot attributes or sorting options.
 * **CI snapshots:** Adding snapshot testing to the CI workflow to catch UI regressions early. I didn't have time to make it work.
+* **Modularization:** The project could be split into SPM modules to enforce layer boundaries at compile time:
+    - **DomainModule**: Entities and Repository protocols (no dependencies)
+    - **DataModule**: DTOs, DataSources, Repository implementations (imports DomainModule)  
+    - **PresentationModule**: ViewModels and Views (imports DomainModule only)
+
+    This would make it impossible for Presentation to accidentally access Data layer internals like `RobotDTO`.
 
 ---
 
