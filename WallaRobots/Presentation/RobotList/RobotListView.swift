@@ -21,7 +21,6 @@ struct RobotListView: View {
                 List {
                     ForEach(viewModel.filteredRobots, id: \.id) { robot in
                         RobotRow(robot: robot)
-                            .environment(viewModel)
                     }
                 }
                 .navigationTitle("WallaRobots")
