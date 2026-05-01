@@ -10,11 +10,19 @@ import OSLog
 
 @main
 struct WallaRobots: App {
-    
-    @State private var robotViewModel = RobotViewModel()
-    
+
+    @State private var robotViewModel: RobotViewModel
+
     @Environment(\.scenePhase) private var scenePhase
     
+    init() {
+        let dataSource = RobotRemoteDataSource()
+        let repository = RobotRepository(dataSource: dataSource)
+
+        self._robotViewModel = State(wrappedValue: RobotViewModel(repository: repository))
+
+    }
+
     var body: some Scene {
         WindowGroup {
             RobotListView()
@@ -27,3 +35,4 @@ struct WallaRobots: App {
         }
     }
 }
+

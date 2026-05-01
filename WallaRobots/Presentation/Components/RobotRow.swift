@@ -108,6 +108,6 @@ private extension RobotRow {
         avatar: URL(string: "https://robohash.org/r2d2.png")!
     )
     RobotRow(robot: r2d2)
-        .environment(RobotViewModel(service: FakeRobotService.previewService))
+        .environment(RobotViewModel(repository: RobotRepository(dataSource: FakeRobotDataSource())))
 }
 

@@ -8,11 +8,11 @@
 
 import Foundation
 
-final class FakeRobotService: RobotServiceProtocol {
+final class FakeRobotDataSource: RobotDataSourceProtocol {
     var result: Result<[Robot], Error> = .success([])
     var fetchCalled = false
 
-    func fetchRobots() async throws -> [Robot] {
+    func fetch() async throws -> [Robot] {
         fetchCalled = true
         switch result {
         case .success(let robots):
@@ -34,16 +34,16 @@ final class FakeRobotService: RobotServiceProtocol {
     }
 }
 
-extension FakeRobotService {
-    static var previewService: FakeRobotService {
-        let service = FakeRobotService()
-        service.result = .success(loadMockRobots())
-        return service
+extension FakeRobotDataSource {
+    static var previewDataSource: FakeRobotDataSource {
+        let dataSource = FakeRobotDataSource()
+        dataSource.result = .success(loadMockRobots())
+        return dataSource
     }
 
-    static var error: FakeRobotService {
-        let service = FakeRobotService()
-        service.result = .failure(URLError(.notConnectedToInternet))
-        return service
+    static var error: FakeRobotDataSource {
+        let dataSource = FakeRobotDataSource()
+        dataSource.result = .failure(URLError(.notConnectedToInternet))
+        return dataSource
     }
 }

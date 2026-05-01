@@ -15,7 +15,7 @@ final class RobotViewModel {
     private var allRobots: [Robot] = []
     private(set) var isLoading: Bool = false
 
-    private let service: RobotServiceProtocol
+    private let repository: RobotRepositoryProtocol
 
     private let pageSize = 20
     private(set) var currentPage = 0
@@ -25,8 +25,8 @@ final class RobotViewModel {
 
     var showNetworkError: Bool = false
 
-    init(service: RobotServiceProtocol = RobotService()) {
-        self.service = service
+    init(repository: RobotRepositoryProtocol) {
+        self.repository = repository
     }
 
     var filteredRobots: [Robot] {
@@ -48,7 +48,7 @@ final class RobotViewModel {
         guard allRobots.isEmpty else { return }
 
         do {
-            allRobots = try await service.fetchRobots()
+            allRobots = try await repository.fetch()
         } catch let urlError as URLError {
             if urlError.code == .notConnectedToInternet || urlError.code == .timedOut {
                 self.showNetworkError = true

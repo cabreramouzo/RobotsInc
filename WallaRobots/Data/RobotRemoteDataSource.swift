@@ -15,9 +15,9 @@ private enum APIConfig {
     }
 }
 
-final class RobotService: RobotServiceProtocol {
+final class RobotRemoteDataSource: RobotDataSourceProtocol {
 
-    func fetchRobots() async throws -> [Robot] {
+    private func fetchRobotsFromAPI() async throws -> [Robot] {
         guard let url = URL(string: APIConfig.Endpoint.robots) else {
             throw URLError(.badURL)
         }
@@ -30,5 +30,9 @@ final class RobotService: RobotServiceProtocol {
 
         let decoder = JSONDecoder()
         return try decoder.decode([Robot].self, from: data)
+    }
+
+    func fetch() async throws -> [Robot] {
+        return try await fetchRobotsFromAPI()
     }
 }
