@@ -105,9 +105,11 @@ private extension RobotRow {
         email: "r2d2@wallapop.com",
         department: .humanResources,
         address: "127.0.0.1",
-        avatar: URL(string: "https://robohash.org/r2d2.png")!
+        avatar: URL(string: "https://robohash.org/r2d2.png")!,
+        price: 99.99,
+        status: .refurbished
     )
     RobotRow(robot: r2d2)
-        .environment(RobotViewModel(service: FakeRobotService.previewService))
+        .environment(RobotViewModel(repository: RobotRepository(dataSource: FakeRobotDataSource())))
 }
 

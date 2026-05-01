@@ -25,16 +25,16 @@ final class SnapshotTests: XCTestCase {
             email: "r2d2@wallapop.com",
             department: .humanResources,
             address: "127.0.0.1",
-            // avatar: nil (default) - shows placeholder
+            avatar: nil,
             price: 99.99,
             status: .new
         )
 
-        let viewModel = RobotViewModel(service: FakeRobotService.previewService)
+        let viewModel = RobotViewModel(repository: RobotRepository(dataSource: FakeRobotDataSource()))
 
         // WHEN: Create the REAL RobotRow view
         let view = RobotRow(robot: robot)
-            .environmentObject(viewModel)
+            .environment(viewModel)
             .frame(width: 390)
 
         // THEN: Snapshot
@@ -54,7 +54,7 @@ final class SnapshotTests: XCTestCase {
             email: "r2d2@wallapop.com",
             department: .humanResources,
             address: "127.0.0.1",
-            // avatar: nil (default) - shows placeholder
+            avatar: nil,
             price: 599.99,
             status: .refurbished
         )

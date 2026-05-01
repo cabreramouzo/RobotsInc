@@ -47,10 +47,10 @@ struct RobotListView: View {
 
 #Preview("List with data") {
     RobotListView()
-        .environment(RobotViewModel(service: FakeRobotService.previewService))
+        .environment(RobotViewModel(repository: RobotRepository(dataSource: FakeRobotDataSource.previewDataSource)))
 }
 
 #Preview("Network error state") {
     RobotListView()
-        .environment(RobotViewModel(service: FakeRobotService.error))
+        .environment(RobotViewModel(repository: RobotRepository(dataSource: FakeRobotDataSource.error)))
 }
