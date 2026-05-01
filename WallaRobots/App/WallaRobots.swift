@@ -11,22 +11,13 @@ import OSLog
 @main
 struct WallaRobots: App {
 
-    @State private var robotViewModel: RobotViewModel
-
     @Environment(\.scenePhase) private var scenePhase
-    
-    init() {
-        let dataSource = RobotRemoteDataSource()
-        let repository = RobotRepository(dataSource: dataSource)
 
-        self._robotViewModel = State(wrappedValue: RobotViewModel(repository: repository))
-
-    }
+    private let repository: RobotRepositoryProtocol = RobotRepository(dataSource: RobotRemoteDataSource())
 
     var body: some Scene {
         WindowGroup {
-            RobotListView()
-                .environment(robotViewModel)
+            RobotCoordinatorView(repository: repository)
         }
         .onChange(of: scenePhase) { oldPhase, newPhase in
             if newPhase == .background {
