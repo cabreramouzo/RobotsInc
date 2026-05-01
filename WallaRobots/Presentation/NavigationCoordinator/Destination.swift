@@ -6,6 +6,5 @@
 //
 
 enum Destination: Hashable {
-    case list
     case detail(robot: Robot)
 }

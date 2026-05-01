@@ -12,8 +12,8 @@ private enum Constants {
 }
 
 struct RobotListView: View {
-    @Environment(RobotCoordinator.self) private var coordinator
-    @Environment(RobotViewModel.self) var viewModel
+    var viewModel: RobotViewModel
+    var onSelectRobot: (Robot) -> Void
 
     var body: some View {
         @Bindable var viewModel = viewModel
@@ -21,12 +21,17 @@ struct RobotListView: View {
             List {
                 ForEach(viewModel.filteredRobots, id: \.id) { robot in
                     Button {
-                        coordinator.showDetail(for: robot)
+                        onSelectRobot(robot)
                     } label: {
                         RobotRow(robot: robot)
                             .foregroundStyle(.primary)
                     }
                     .buttonStyle(HighlightButtonStyle())
+                    .onAppear {
+                        if viewModel.searchText.isEmpty && robot.id == viewModel.filteredRobots.last?.id {
+                            viewModel.loadMoreRobots()
+                        }
+                    }
                 }
             }
             .navigationTitle("WallaRobots")
@@ -53,16 +58,18 @@ struct RobotListView: View {
 
 #Preview("List with data") {
     NavigationStack {
-        RobotListView()
-            .environment(RobotCoordinator())
-            .environment(RobotViewModel(repository: RobotRepository(dataSource: FakeRobotDataSource.previewDataSource)))
+        RobotListView(
+            viewModel: RobotViewModel(repository: RobotRepository(dataSource: FakeRobotDataSource.previewDataSource)),
+            onSelectRobot: { _ in }
+        )
     }
 }
 
 #Preview("Network error state") {
     NavigationStack {
-        RobotListView()
-            .environment(RobotCoordinator())
-            .environment(RobotViewModel(repository: RobotRepository(dataSource: FakeRobotDataSource.error)))
+        RobotListView(
+            viewModel: RobotViewModel(repository: RobotRepository(dataSource: FakeRobotDataSource.error)),
+            onSelectRobot: { _ in }
+        )
     }
 }

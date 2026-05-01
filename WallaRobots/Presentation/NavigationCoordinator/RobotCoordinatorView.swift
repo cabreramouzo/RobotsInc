@@ -20,17 +20,15 @@ struct RobotCoordinatorView: View {
 
     var body: some View {
         NavigationStack(path: $coordinator.path) {
-            RobotListView()
-                .navigationDestination(for: Destination.self) { destination in
-                    switch destination {
-                        case .list:
-                            RobotListView()
-                        case .detail(let robot):
-                            RobotDetailView(robot: robot)
-                    }
+            RobotListView(viewModel: viewModel, onSelectRobot: { robot in
+                coordinator.showDetail(for: robot)
+            })
+            .navigationDestination(for: Destination.self) { destination in
+                switch destination {
+                    case .detail(let robot):
+                        RobotDetailView(robot: robot)
                 }
-                .environment(coordinator)
-                .environment(viewModel)
+            }
         }
     }
 }

@@ -11,32 +11,22 @@ import OSLog
 
 struct RobotRow: View {
     let robot: Robot
-    @Environment(RobotViewModel.self) var viewModel
 
     var body: some View {
-        NavigationLink {
-            RobotDetailView(robot: robot)
-        } label: {
-            HStack {
-                robotAvatarImage(robot: robot)
-                robotVerticalStack(robot: robot)
+        HStack {
+            robotAvatarImage(robot: robot)
+            robotVerticalStack(robot: robot)
 
-                Spacer()
+            Spacer()
 
-                Text(robot.status.rawValue)
-                    .font(.caption)
-                    .padding(6)
-                    .background(Color.gray.opacity(0.1))
-                    .cornerRadius(4)
-            }
-            .accessibilityElement(children: .combine)
-            .accessibilityHint("Double tap to view details of \(robot.fullName)")
-            .onAppear {
-                if viewModel.searchText.isEmpty && robot.id == viewModel.filteredRobots.last?.id {
-                    viewModel.loadMoreRobots()
-                }
-            }
+            Text(robot.status.rawValue)
+                .font(.caption)
+                .padding(6)
+                .background(Color.gray.opacity(0.1))
+                .cornerRadius(4)
         }
+        .accessibilityElement(children: .combine)
+        .accessibilityHint("Double tap to view details of \(robot.fullName)")
         .id(robot.id)
         .accessibilityIdentifier("RobotRow_\(robot.id)")
     }
@@ -110,6 +100,4 @@ private extension RobotRow {
         status: .refurbished
     )
     RobotRow(robot: r2d2)
-        .environment(RobotViewModel(repository: RobotRepository(dataSource: FakeRobotDataSource())))
 }
-
