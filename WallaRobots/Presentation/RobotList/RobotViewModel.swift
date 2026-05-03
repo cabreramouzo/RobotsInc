@@ -10,20 +10,19 @@ import OSLog
 
 @Observable
 final class RobotViewModel {
+
+    // MARK: - Public properties
     var robots: [Robot] = []
-
-    private var allRobots: [Robot] = []
-    private(set) var isLoading: Bool = false
-
-    private let repository: RobotRepositoryProtocol
-
-    private let pageSize = 20
-    private(set) var currentPage = 0
-
     var searchText: String = ""
     var debouncedSearchText: String = ""
-
+    private(set) var isLoading: Bool = false
     private(set) var showNetworkError: Bool = false
+    private(set) var currentPage = 0
+
+    // MARK: - Private properties
+    private var allRobots: [Robot] = []
+    private let repository: RobotRepositoryProtocol
+    private let pageSize = 20
 
     init(repository: RobotRepositoryProtocol) {
         self.repository = repository

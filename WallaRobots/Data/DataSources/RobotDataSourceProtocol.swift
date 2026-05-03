@@ -6,6 +6,6 @@
 //
 
 
-protocol RobotDataSourceProtocol {
+protocol RobotDataSourceProtocol: Sendable {
     func fetch() async throws -> [RobotDTO]
 }
