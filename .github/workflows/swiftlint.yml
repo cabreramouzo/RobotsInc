@@ -13,12 +13,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0
-
-      - name: Configure git safe directory
-        run: git config --global --add safe.directory /github/workspace
-
-      - name: SwiftLint Check
+          fetch-depth: 0 
+      - name: GitHub Action for SwiftLint
         uses: norio-nomura/action-swiftlint@3.2.1
         env:
+          DIFF_BASE: ${{ github.base_ref }}
           WORKING_DIRECTORY: WallaRobots
+
+
+
