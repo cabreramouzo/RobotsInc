@@ -15,9 +15,11 @@ excluded:
 
 # Configurable rules can be customized from this configuration file.
 # Binary rules can be turned on or off
-disabled_rules: # rule identifiers to exclude from running
+disabled_rules:
   - trailing_whitespace
   - todo
+  - switch_case_alignment
+  - unused_closure_parameter
 
 # Some rules are only opt-in
 opt_in_rules: # some rules are only opt-in
@@ -50,6 +52,7 @@ cyclomatic_complexity:
 identifier_name:
   min_length: 2
   max_length: 50
+  allowed_symbols: ["_"]
   excluded:
     - id
     - x

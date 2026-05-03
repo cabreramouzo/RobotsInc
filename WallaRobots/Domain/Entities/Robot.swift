@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 struct Robot: Identifiable, Hashable {
     let id: Int
     let username: String
@@ -20,6 +19,6 @@ struct Robot: Identifiable, Hashable {
     let avatar: URL?
     let price: Double
     let status: RobotStatus
-    
+
     var fullName: String { "\(firstName) \(lastName)" }
 }

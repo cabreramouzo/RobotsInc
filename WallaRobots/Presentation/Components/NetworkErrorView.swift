@@ -15,20 +15,20 @@ struct NetworkErrorView: View {
             Image(systemName: "wifi.slash")
                 .font(.system(size: 60))
                 .foregroundColor(.gray)
-            
+
             Text("No Internet Connection")
                 .font(.title3)
                 .fontWeight(.bold)
-            
+
             Text("Please check your connection and try again.")
                 .font(.subheadline)
                 .foregroundColor(.gray)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 40)
-            
-            Button(action: {
+
+            Button {
                 Task { await action() }
-            }) {
+            } label: {
                 Text("Retry")
                     .fontWeight(.semibold)
                     .frame(width: 120, height: 40)

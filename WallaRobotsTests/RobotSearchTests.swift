@@ -126,7 +126,11 @@ final class RobotSearchTests: XCTestCase {
 
         // THEN: filteredRobots should NOT change yet - debouncedSearchText is still empty
         XCTAssertEqual(viewModel.debouncedSearchText, "", "View hasn't fired debounce yet")
-        XCTAssertEqual(viewModel.filteredRobots.count, initialCount, "filteredRobots should not change until debouncedSearchText is updated")
+        XCTAssertEqual(
+            viewModel.filteredRobots.count,
+            initialCount,
+            "filteredRobots should not change until debouncedSearchText is updated"
+        )
     }
 
     @MainActor

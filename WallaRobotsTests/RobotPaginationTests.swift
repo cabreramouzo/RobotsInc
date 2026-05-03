@@ -28,6 +28,3 @@ final class RobotPaginationTests: XCTestCase {
         XCTAssertEqual(viewModel.currentPage, 2, "Should be on page 2 after pagination")
     }
 }
-
-
-
