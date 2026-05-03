@@ -17,33 +17,32 @@ struct RobotListView: View {
 
     var body: some View {
         @Bindable var viewModel = viewModel
-        ZStack {
-            List {
-                ForEach(viewModel.filteredRobots, id: \.id) { robot in
-                    Button {
-                        onSelectRobot(robot)
-                    } label: {
-                        RobotRow(robot: robot)
-                            .foregroundStyle(.primary)
-                    }
-                    .buttonStyle(HighlightButtonStyle())
-                    .onAppear {
-                        if viewModel.searchText.isEmpty && robot.id == viewModel.filteredRobots.last?.id {
-                            viewModel.loadMoreRobots()
-                        }
+        List {
+            ForEach(viewModel.filteredRobots, id: \.id) { robot in
+                Button {
+                    onSelectRobot(robot)
+                } label: {
+                    RobotRow(robot: robot)
+                        .foregroundStyle(.primary)
+                }
+                .buttonStyle(HighlightButtonStyle())
+                .onAppear {
+                    if viewModel.searchText.isEmpty && robot.id == viewModel.filteredRobots.last?.id {
+                        viewModel.loadMoreRobots()
                     }
                 }
             }
-            .navigationTitle("WallaRobots")
-            .task {
-                await viewModel.initialLoad()
-            }
-            .task(id: viewModel.searchText) {
-                try? await Task.sleep(for: Constants.searchDebounceInterval)
-                viewModel.debouncedSearchText = viewModel.searchText
-            }
-            .searchable(text: $viewModel.searchText, prompt: "Search robots by name or email")
-
+        }
+        .navigationTitle("WallaRobots")
+        .task {
+            await viewModel.initialLoad()
+        }
+        .task(id: viewModel.searchText) {
+            try? await Task.sleep(for: Constants.searchDebounceInterval)
+            viewModel.debouncedSearchText = viewModel.searchText
+        }
+        .searchable(text: $viewModel.searchText, prompt: "Search robots by name or email")
+        .overlay {
             if viewModel.showNetworkError && viewModel.filteredRobots.isEmpty {
                 NetworkErrorView {
                     await viewModel.initialLoad()

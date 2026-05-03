@@ -25,28 +25,10 @@ struct RobotDetailView: View {
                         detailRow(label: "Department", value: robot.department.rawValue, icon: "briefcase.fill")
                         detailRow(label: "Address", value: robot.address, icon: "mappin.and.ellipse")
                     }
-                    
+
                     Divider().padding(.vertical, 10)
-                    
-                    HStack {
-                        VStack(alignment: .leading) {
-                            Text("Estimated price")
-                                .font(.caption)
-                                .foregroundColor(.gray)
-                            Text("\(robot.price, specifier: "%.2f")€")
-                                .font(.title2)
-                                .bold()
-                                .foregroundColor(Color.wallapopColor)
-                        }
-                        Spacer()
-                        Text(robot.status.rawValue)
-                            .font(.caption)
-                            .bold()
-                            .padding(8)
-                            .background(Color.gray.opacity(0.1))
-                            .cornerRadius(8)
-                            .accessibilityValue(robot.status == .new ? "Robot is new" : "Robot is Refurbished")
-                    }
+
+                    priceAndStatusRow
                 }
                 .padding(.horizontal)
             }
@@ -54,9 +36,14 @@ struct RobotDetailView: View {
         .navigationTitle(robot.username)
         .navigationBarTitleDisplayMode(.inline)
     }
-    
+}
+
+// MARK: - Subviews
+
+private extension RobotDetailView {
+
     @ViewBuilder
-    private var avatarView: some View {
+    var avatarView: some View {
         if let avatarURL = robot.avatar {
             AsyncImage(url: avatarURL) { image in
                 image
@@ -68,22 +55,47 @@ struct RobotDetailView: View {
                 ProgressView()
             }
         } else {
-            // Placeholder for tests/snapshots
-            ZStack {
-                Circle()
-                    .fill(Color.gray.opacity(0.2))
-                Image(systemName: "person.fill")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 80, height: 80)
-                    .foregroundColor(.gray)
-            }
-            .overlay(Circle().stroke(Color.gray.opacity(0.2), lineWidth: 4))
+            avatarPlaceholder
         }
     }
-    
+
+    var avatarPlaceholder: some View {
+        ZStack {
+            Circle()
+                .fill(Color.gray.opacity(0.2))
+            Image(systemName: "person.fill")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 80, height: 80)
+                .foregroundColor(.gray)
+        }
+        .overlay(Circle().stroke(Color.gray.opacity(0.2), lineWidth: 4))
+    }
+
+    var priceAndStatusRow: some View {
+        HStack {
+            VStack(alignment: .leading) {
+                Text("Estimated price")
+                    .font(.caption)
+                    .foregroundColor(.gray)
+                Text("\(robot.price, specifier: "%.2f")€")
+                    .font(.title2)
+                    .bold()
+                    .foregroundColor(Color.wallapopColor)
+            }
+            Spacer()
+            Text(robot.status.rawValue)
+                .font(.caption)
+                .bold()
+                .padding(8)
+                .background(Color.gray.opacity(0.1))
+                .cornerRadius(8)
+                .accessibilityValue(robot.status == .new ? "Robot is new" : "Robot is Refurbished")
+        }
+    }
+
     @ViewBuilder
-    private func detailRow(label: String, value: String, icon: String) -> some View {
+    func detailRow(label: String, value: String, icon: String) -> some View {
         HStack(alignment: .top) {
             Image(systemName: icon)
                 .foregroundColor(.secondary)
