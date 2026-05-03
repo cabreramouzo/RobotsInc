@@ -2,89 +2,80 @@
 //  RobotRemoteDataSourceTests.swift
 //  WallaRobotsTests
 //
-//  Created by Miguel Cabrera on 03/05/2026.
-//
 
-import Testing
-import Foundation
+import XCTest
 @testable import WallaRobots
 
-struct RobotRemoteDataSourceTests {
-    
-    // MARK: - Properties
-    
-    private let fakeSession: FakeURLSession
-    private let dataSource: RobotRemoteDataSource
-    
-    // MARK: - Setup
-    
-    init() {
-        fakeSession = FakeURLSession()
-        dataSource = RobotRemoteDataSource(session: fakeSession)
-    }
-    
+@MainActor
+final class RobotRemoteDataSourceTests: XCTestCase {
+
     // MARK: - Tests
-    
-    @Test("Fetch returns decoded robots from valid JSON")
+
     func testFetchReturnsDecodedRobots() async throws {
         // GIVEN: A valid JSON response from the session
-        var session = fakeSession
-        session.mockData = loadMockJSON()
-        session.mockStatusCode = 200
-        let dataSource = RobotRemoteDataSource(session: session)
-        
+        var fakeSession = FakeURLSession()
+        fakeSession.mockData = loadMockJSON()
+        fakeSession.mockStatusCode = 200
+        let dataSource = RobotRemoteDataSource(session: fakeSession)
+
         // WHEN: We fetch the robots
         let robots = try await dataSource.fetch()
-        
+
         // THEN: The robots are decoded correctly
-        #expect(!robots.isEmpty, "Should return robots from valid JSON")
-        #expect(robots.first?.username == "heyres0")
-        #expect(robots.first?.first_name == "Hadley")
-        #expect(robots.first?.last_name == "Eyres")
+        XCTAssertFalse(robots.isEmpty, "Should return robots from valid JSON")
+        XCTAssertEqual(robots.first?.username, "heyres0")
+        XCTAssertEqual(robots.first?.first_name, "Hadley")
+        XCTAssertEqual(robots.first?.last_name, "Eyres")
     }
-    
-    @Test("Fetch throws on bad HTTP status code")
+
     func testFetchThrowsOnBadStatusCode() async throws {
         // GIVEN: A 500 server error response
-        var session = fakeSession
-        session.mockStatusCode = 500
-        let dataSource = RobotRemoteDataSource(session: session)
-        
+        var fakeSession = FakeURLSession()
+        fakeSession.mockStatusCode = 500
+        let dataSource = RobotRemoteDataSource(session: fakeSession)
+
         // WHEN / THEN: Fetch should throw a badServerResponse error
-        await #expect(throws: URLError(.badServerResponse)) {
-            try await dataSource.fetch()
+        do {
+            _ = try await dataSource.fetch()
+            XCTFail("Should have thrown an error")
+        } catch let error as URLError {
+            XCTAssertEqual(error.code, .badServerResponse)
         }
     }
-    
-    @Test("Fetch throws on network error")
+
     func testFetchThrowsOnNetworkError() async throws {
         // GIVEN: A session that throws a network error
-        var session = fakeSession
-        session.shouldThrow = true
-        let dataSource = RobotRemoteDataSource(session: session)
-        
+        var fakeSession = FakeURLSession()
+        fakeSession.shouldThrow = true
+        let dataSource = RobotRemoteDataSource(session: fakeSession)
+
         // WHEN / THEN: Fetch should propagate the network error
-        await #expect(throws: URLError(.notConnectedToInternet)) {
-            try await dataSource.fetch()
+        do {
+            _ = try await dataSource.fetch()
+            XCTFail("Should have thrown an error")
+        } catch let error as URLError {
+            XCTAssertEqual(error.code, .notConnectedToInternet)
         }
     }
-    
-    @Test("Fetch throws DecodingError on invalid JSON")
+
     func testFetchThrowsOnInvalidJSON() async throws {
         // GIVEN: An invalid JSON response
-        var session = fakeSession
-        session.mockData = "invalid json".data(using: .utf8)!
-        session.mockStatusCode = 200
-        let dataSource = RobotRemoteDataSource(session: session)
-        
+        var fakeSession = FakeURLSession()
+        fakeSession.mockData = "invalid json".data(using: .utf8)!
+        fakeSession.mockStatusCode = 200
+        let dataSource = RobotRemoteDataSource(session: fakeSession)
+
         // WHEN / THEN: Fetch should throw a decoding error
-        await #expect(throws: (any Error).self) {
-            try await dataSource.fetch()
+        do {
+            _ = try await dataSource.fetch()
+            XCTFail("Should have thrown a decoding error")
+        } catch {
+            XCTAssertTrue(error is DecodingError, "Should be a DecodingError")
         }
     }
-    
+
     // MARK: - Helpers
-    
+
     private func loadMockJSON() -> Data {
         guard let url = Bundle(for: FakeRobotDataSource.self).url(forResource: "test_robots", withExtension: "json"),
               let data = try? Data(contentsOf: url) else {

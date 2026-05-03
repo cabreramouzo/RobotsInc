@@ -2,22 +2,16 @@
 //  RobotRemoteDataSource.swift
 //  WallaRobots
 //
-//  Created by Miguel Cabrera on 03/05/2026.
+// Created by Miguel Cabrera on 03/05/2026.
 //
 
 import Foundation
 
-// MARK: - API Configuration
-
-private enum APIConfig {
-    static let baseURL = "https://acoding.academy/testData"
-
-    enum Endpoint {
-        static let robots: URL = URL(string: "\(APIConfig.baseURL)/EmpleadosData.json")!
-    }
-}
-
 // MARK: - Remote DataSource
+
+private enum Endpoint {
+    static let robots: URL = URL(string: "https://acoding.academy/testData/EmpleadosData.json")!
+}
 
 final class RobotRemoteDataSource: RobotDataSourceProtocol {
 
@@ -28,18 +22,12 @@ final class RobotRemoteDataSource: RobotDataSourceProtocol {
     }
 
     func fetch() async throws -> [RobotDTO] {
-        try await fetchDecodable([RobotDTO].self, from: APIConfig.Endpoint.robots)
-    }
-
-    // MARK: - Generic Network Layer
-
-    private func fetchDecodable<T: Decodable>(_ type: T.Type, from url: URL) async throws -> T {
-        let (data, response) = try await session.data(from: url)
+        let (data, response) = try await session.data(from: Endpoint.robots)
 
         guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
             throw URLError(.badServerResponse)
         }
 
-        return try JSONDecoder().decode(T.self, from: data)
+        return try JSONDecoder().decode([RobotDTO].self, from: data)
     }
 }
