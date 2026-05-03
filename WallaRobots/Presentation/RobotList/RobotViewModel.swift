@@ -23,7 +23,7 @@ final class RobotViewModel {
     var searchText: String = ""
     var debouncedSearchText: String = ""
 
-    var showNetworkError: Bool = false
+    private(set) var showNetworkError: Bool = false
 
     init(repository: RobotRepositoryProtocol) {
         self.repository = repository

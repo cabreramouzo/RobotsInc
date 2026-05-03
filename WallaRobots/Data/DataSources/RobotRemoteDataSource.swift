@@ -1,8 +1,6 @@
 //
-//  RobotService.swift
+//  RobotRemoteDataSource.swift
 //  WallaRobots
-//
-//  Created by Miguel Cabrera on 19/04/2026.
 //
 
 import Foundation
@@ -17,7 +15,7 @@ private enum APIConfig {
 
 final class RobotRemoteDataSource: RobotDataSourceProtocol {
 
-    private func fetchRobotsFromAPI() async throws -> [RobotDTO] {
+    func fetch() async throws -> [RobotDTO] {
         guard let url = URL(string: APIConfig.Endpoint.robots) else {
             throw URLError(.badURL)
         }
@@ -28,11 +26,6 @@ final class RobotRemoteDataSource: RobotDataSourceProtocol {
             throw URLError(.badServerResponse)
         }
 
-        let decoder = JSONDecoder()
-        return try decoder.decode([RobotDTO].self, from: data)
-    }
-
-    func fetch() async throws -> [RobotDTO] {
-        return try await fetchRobotsFromAPI()
+        return try JSONDecoder().decode([RobotDTO].self, from: data)
     }
 }

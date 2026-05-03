@@ -10,9 +10,13 @@ This App consist of a robot directory and detail viewer, focused on **high decou
 
 ## Architecture & Technical Decisions
 
-I opted for **MVVM** as the primary architectural pattern due to its synergy with SwiftUI's reactive data flow.
+The app follows **Clean Architecture** principles with **MVVM** in the Presentation layer, organized into three distinct layers:
 
-My main focus was writing clean, testable, and maintainable code with a clear separation of concerns. I also paid close attention to rendering optimization within SwiftUI to ensure a smooth user experience.
+- **Domain Layer** — Pure Swift entities (`Robot`, `Department`, `Gender`, `RobotStatus`) and repository protocols. No dependencies on other layers.
+- **Data Layer** — `RobotDTO`, `RobotRemoteDataSource`, and `RobotRepository` which maps DTOs to domain entities. Only depends on Domain protocols.
+- **Presentation Layer** — `RobotViewModel`, SwiftUI Views, and a **Coordinator** pattern for navigation. Only depends on Domain entities and protocols.
+
+Navigation is handled by a `RobotCoordinator` using `NavigationPath` and a typed `Destination` enum, ensuring scalable and decoupled navigation. Views receive dependencies via explicit parameters and closures instead of `@EnvironmentObject`, preserving separation of concerns.
 
 To demonstrate versatility, I used a hybrid image loading strategy: Kingfisher for the main list (leveraging its robust caching) and AsyncImage for the detail view.
 

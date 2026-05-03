@@ -25,9 +25,9 @@ struct RobotDetailView: View {
                         detailRow(label: "Department", value: robot.department.rawValue, icon: "briefcase.fill")
                         detailRow(label: "Address", value: robot.address, icon: "mappin.and.ellipse")
                     }
-
+                    
                     Divider().padding(.vertical, 10)
-
+                    
                     HStack {
                         VStack(alignment: .leading) {
                             Text("Estimated price")
@@ -54,7 +54,7 @@ struct RobotDetailView: View {
         .navigationTitle(robot.username)
         .navigationBarTitleDisplayMode(.inline)
     }
-
+    
     @ViewBuilder
     private var avatarView: some View {
         if let avatarURL = robot.avatar {
@@ -81,7 +81,7 @@ struct RobotDetailView: View {
             .overlay(Circle().stroke(Color.gray.opacity(0.2), lineWidth: 4))
         }
     }
-
+    
     @ViewBuilder
     private func detailRow(label: String, value: String, icon: String) -> some View {
         HStack(alignment: .top) {
@@ -96,14 +96,21 @@ struct RobotDetailView: View {
     }
 }
 
-//#Preview {
-//    let testRobot = Robot(id: 2, username: "refurbu",
-//                          firstName: "Kaniko",
-//                          lastName: "Lastno",
-//                          gender: .male,
-//                          email: "kaniko@gmail.com",
-//                          department: .humanResources,
-//                          address: "127.0.0.1",
-//                          avatar: URL(string: "https://robohash.org/2.png?set=set1&size=180x180"))
-//    RobotDetailView(robot: testRobot)
-//}
+#Preview {
+    let testRobot = Robot(
+        id: 2,
+        username: "refurbu",
+        firstName: "Kaniko",
+        lastName: "Lastno",
+        gender: .male,
+        email: "kaniko@gmail.com",
+        department: .humanResources,
+        address: "127.0.0.1",
+        avatar: nil,
+        price: 599.99,
+        status: .refurbished
+    )
+    NavigationStack {
+        RobotDetailView(robot: testRobot)
+    }
+}
