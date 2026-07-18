@@ -8,16 +8,16 @@
 import Foundation
 
 final class FakeRobotDataSource: RobotDataSourceProtocol {
-    var result: Result<[RobotDTO], Error> = .success([])
+    var result: Result<[RobotDTO], RobotDataSourceError> = .success([])
     var fetchCalled = false
 
-    func fetch() async throws -> [RobotDTO] {
+    func fetch() async throws(RobotDataSourceError) -> [RobotDTO] {
         fetchCalled = true
         switch result {
-            case .success(let robots):
-                return robots
-            case .failure(let error):
-                throw error
+        case .success(let robots):
+            return robots
+        case .failure(let error):
+            throw error
         }
     }
 
@@ -42,7 +42,7 @@ extension FakeRobotDataSource {
 
     static var error: FakeRobotDataSource {
         let dataSource = FakeRobotDataSource()
-        dataSource.result = .failure(URLError(.notConnectedToInternet))
+        dataSource.result = .failure(.networkNotConnected)
         return dataSource
     }
 }

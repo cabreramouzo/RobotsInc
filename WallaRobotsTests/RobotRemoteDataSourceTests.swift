@@ -34,12 +34,14 @@ final class RobotRemoteDataSourceTests: XCTestCase {
         fakeSession.mockStatusCode = 500
         let dataSource = RobotRemoteDataSource(session: fakeSession)
 
-        // WHEN / THEN: Fetch should throw a badServerResponse error
+        // WHEN / THEN: Fetch should map a non-200 status to .server
         do {
             _ = try await dataSource.fetch()
             XCTFail("Should have thrown an error")
-        } catch let error as URLError {
-            XCTAssertEqual(error.code, .badServerResponse)
+        } catch {
+            guard case .server = error else {
+                return XCTFail("Expected .server, got \(error)")
+            }
         }
     }
 
@@ -49,12 +51,14 @@ final class RobotRemoteDataSourceTests: XCTestCase {
         fakeSession.shouldThrow = true
         let dataSource = RobotRemoteDataSource(session: fakeSession)
 
-        // WHEN / THEN: Fetch should propagate the network error
+        // WHEN / THEN: Fetch should map a URLError to .networkNotConnected
         do {
             _ = try await dataSource.fetch()
             XCTFail("Should have thrown an error")
-        } catch let error as URLError {
-            XCTAssertEqual(error.code, .notConnectedToInternet)
+        } catch {
+            guard case .networkNotConnected = error else {
+                return XCTFail("Expected .networkNotConnected, got \(error)")
+            }
         }
     }
 
@@ -65,12 +69,14 @@ final class RobotRemoteDataSourceTests: XCTestCase {
         fakeSession.mockStatusCode = 200
         let dataSource = RobotRemoteDataSource(session: fakeSession)
 
-        // WHEN / THEN: Fetch should throw a decoding error
+        // WHEN / THEN: Fetch should map a decoding failure to .decoding
         do {
             _ = try await dataSource.fetch()
             XCTFail("Should have thrown a decoding error")
         } catch {
-            XCTAssertTrue(error is DecodingError, "Should be a DecodingError")
+            guard case .decoding = error else {
+                return XCTFail("Expected .decoding, got \(error)")
+            }
         }
     }
 

@@ -43,8 +43,12 @@ struct RobotListView: View {
         }
         .searchable(text: $viewModel.searchText, prompt: "Search robots by name or email")
         .overlay {
-            if viewModel.showNetworkError && viewModel.filteredRobots.isEmpty {
-                NetworkErrorView {
+            if let errorData = viewModel.errorViewData, viewModel.filteredRobots.isEmpty {
+                ErrorView(
+                    title: errorData.title,
+                    message: errorData.message,
+                    systemImage: errorData.systemImage
+                ) {
                     await viewModel.initialLoad()
                 }
             }

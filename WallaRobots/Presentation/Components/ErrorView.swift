@@ -1,5 +1,5 @@
 //
-//  NetworkErrorView.swift
+//  ErrorView.swift
 //  WallaRobots
 //
 //  Created by Miguel Cabrera on 20/04/2026.
@@ -7,32 +7,41 @@
 
 import SwiftUI
 
-struct NetworkErrorView: View {
-    var action: () async -> Void
+struct ErrorViewData {
+    let title: String
+    let message: String
+    let systemImage: String
+}
+
+struct ErrorView: View {
+    let title: String
+    let message: String
+    let systemImage: String
+    var retry: () async -> Void
 
     var body: some View {
         VStack(spacing: 20) {
-            Image(systemName: "wifi.slash")
+            Image(systemName: systemImage)
                 .font(.system(size: 60))
                 .foregroundColor(.gray)
 
-            Text("No Internet Connection")
+            Text(title)
                 .font(.title3)
                 .fontWeight(.bold)
 
-            Text("Please check your connection and try again.")
+            Text(message)
                 .font(.subheadline)
                 .foregroundColor(.gray)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 40)
 
             Button {
-                Task { await action() }
+                Task { await retry() }
             } label: {
                 Text("Retry")
                     .fontWeight(.semibold)
                     .frame(width: 120, height: 40)
-                    .background(Color(red: 0.07, green: 0.76, blue: 0.67))
+                    .background(Color.wallapopColor)
                     .foregroundColor(.white)
                     .cornerRadius(20)
             }
@@ -40,4 +49,15 @@ struct NetworkErrorView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color(.systemBackground))
     }
+}
+
+// MARK: - Previews
+
+#Preview {
+    ErrorView(
+        title: "No Internet Connection",
+        message: "Please check your connection and try again.",
+        systemImage: "wifi.slash",
+        retry: {}
+    )
 }

@@ -48,14 +48,16 @@ struct WallaRobotsTests {
     func testInitialLoadFailure() async {
         // GIVEN: A viewModel with mocked data source configured to fail
         let mockDataSource = FakeRobotDataSource()
-        mockDataSource.result = .failure(URLError(.notConnectedToInternet))
+        mockDataSource.result = .failure(.networkNotConnected)
         let viewModel = RobotViewModel(repository: RobotRepository(dataSource: mockDataSource))
 
         // WHEN: Initial load is triggered
         await viewModel.initialLoad()
 
-        // THEN: Robots array should remain empty due to failure
+        // THEN: Robots array should remain empty and the network error should be surfaced
         #expect(viewModel.robots.isEmpty, "Robots array should remain empty when load fails")
+        #expect(viewModel.error == .network, "A network data source error should map to the .network repository error")
+        #expect(viewModel.errorViewData != nil, "The view model should expose error data to display")
     }
 
     @Test("Test first robot details are correctly loaded")

@@ -6,5 +6,5 @@
 //
 
 protocol RobotRepositoryProtocol {
-    func fetch() async throws -> [Robot]
+    func fetch() async throws(RobotRepositoryError) -> [Robot]
 }
