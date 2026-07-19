@@ -42,7 +42,7 @@ private extension RobotRow {
             Text(robot.email).font(.subheadline).foregroundColor(.gray)
             Text(robot.formattedPrice)
                 .font(.system(size: 18, weight: .bold))
-                .foregroundColor(Color.wallapopColor)
+                .foregroundColor(Color.brandPrimary)
         }
     }
 

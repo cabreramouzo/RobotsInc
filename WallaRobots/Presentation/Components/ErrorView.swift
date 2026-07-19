@@ -41,7 +41,7 @@ struct ErrorView: View {
                 Text("Retry")
                     .fontWeight(.semibold)
                     .frame(width: 120, height: 40)
-                    .background(Color.wallapopColor)
+                    .background(Color.brandPrimary)
                     .foregroundColor(.white)
                     .cornerRadius(20)
             }

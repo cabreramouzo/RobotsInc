@@ -81,7 +81,7 @@ private extension RobotDetailView {
                 Text(robot.formattedPrice)
                     .font(.title2)
                     .bold()
-                    .foregroundColor(Color.wallapopColor)
+                    .foregroundColor(Color.brandPrimary)
             }
             Spacer()
             Text(robot.status.rawValue)
