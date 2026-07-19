@@ -59,9 +59,9 @@ final class SnapshotTests: XCTestCase {
             status: .refurbished
         )
 
-        // WHEN: Create the RobotDetailView
+        // WHEN: Create the RobotDetailContentView (pure rendering, no async load)
         let view = NavigationStack {
-            RobotDetailView(robot: robot)
+            RobotDetailContentView(robot: robot)
         }
 
         // THEN: Snapshot

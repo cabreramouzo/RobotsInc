@@ -12,8 +12,8 @@ final class RobotCoordinator {
 
     var path = NavigationPath()
 
-    func showDetail(for robot: Robot) {
-        path.append(Destination.detail(robot: robot))
+    func showDetail(robotID: Int) {
+        path.append(Destination.detail(robotID: robotID))
     }
 
     func popToRoot() {

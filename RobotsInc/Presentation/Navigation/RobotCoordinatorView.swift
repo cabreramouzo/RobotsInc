@@ -21,13 +21,22 @@ struct RobotCoordinatorView: View {
     var body: some View {
         NavigationStack(path: $coordinator.path) {
             RobotListView(viewModel: viewModel, onSelectRobot: { robot in
-                coordinator.showDetail(for: robot)
+                coordinator.showDetail(robotID: robot.id)
             })
             .navigationDestination(for: Destination.self) { destination in
                 switch destination {
-                    case .detail(let robot):
-                        RobotDetailView(robot: robot)
+                    case .detail(let robotID):
+                        RobotDetailView(
+                            viewModel: RobotDetailViewModel(robotID: robotID, repository: repository)
+                        )
                 }
+            }
+        }
+        // Deep links reuse the exact same navigation route as a tap on the
+        // list: one route, two origins.
+        .onOpenURL { url in
+            if let robotID = DeepLink.robotID(from: url) {
+                coordinator.showDetail(robotID: robotID)
             }
         }
     }

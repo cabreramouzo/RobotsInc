@@ -42,30 +42,10 @@ final class RobotViewModel {
         return debouncedSearchText.isEmpty && currentPage * pageSize < allRobots.count
     }
 
-    /// Maps the domain error into the copy the UI should show.
-    /// `nil` when there is no error to display.
+    /// The copy the UI should show for the current error,
+    /// or `nil` when there is no error to display.
     var errorViewData: ErrorViewData? {
-        guard let error else { return nil }
-        switch error {
-        case .network:
-            return ErrorViewData(
-                title: "No Internet Connection",
-                message: "Please check your connection and try again.",
-                systemImage: "wifi.slash"
-            )
-        case .server:
-            return ErrorViewData(
-                title: "Something Went Wrong",
-                message: "Our servers are having a moment. Please try again.",
-                systemImage: "exclamationmark.icloud"
-            )
-        case .unknown:
-            return ErrorViewData(
-                title: "Unexpected Error",
-                message: "An unexpected error occurred. Please try again.",
-                systemImage: "exclamationmark.triangle"
-            )
-        }
+        error?.viewData
     }
 
     @MainActor

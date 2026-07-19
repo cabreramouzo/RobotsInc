@@ -6,7 +6,39 @@
 //
 import SwiftUI
 
+/// Stateful wrapper: resolves the robot by id through the view model,
+/// so the detail can be reached from the list or from a deep link alike.
 struct RobotDetailView: View {
+    @State private var viewModel: RobotDetailViewModel
+
+    init(viewModel: RobotDetailViewModel) {
+        self._viewModel = State(wrappedValue: viewModel)
+    }
+
+    var body: some View {
+        Group {
+            if let robot = viewModel.robot {
+                RobotDetailContentView(robot: robot)
+            } else if let errorData = viewModel.errorViewData {
+                ErrorView(
+                    title: errorData.title,
+                    message: errorData.message,
+                    systemImage: errorData.systemImage
+                ) {
+                    await viewModel.load()
+                }
+            } else {
+                ProgressView()
+            }
+        }
+        .task {
+            await viewModel.load()
+        }
+    }
+}
+
+/// Pure rendering of an already-resolved robot.
+struct RobotDetailContentView: View {
     let robot: Robot
 
     var body: some View {
@@ -40,7 +72,7 @@ struct RobotDetailView: View {
 
 // MARK: - Subviews
 
-private extension RobotDetailView {
+private extension RobotDetailContentView {
 
     @ViewBuilder
     var avatarView: some View {
@@ -115,7 +147,7 @@ private extension RobotDetailView {
         firstName: "Kaniko",
         lastName: "Lastno",
         gender: .male,
-        email: "kaniko@gmail.com",
+        email: "kaniko@robotsinc.com",
         department: .humanResources,
         address: "127.0.0.1",
         avatar: nil,
@@ -123,6 +155,6 @@ private extension RobotDetailView {
         status: .refurbished
     )
     NavigationStack {
-        RobotDetailView(robot: testRobot)
+        RobotDetailContentView(robot: testRobot)
     }
 }
