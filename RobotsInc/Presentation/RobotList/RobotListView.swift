@@ -27,9 +27,7 @@ struct RobotListView: View {
                 }
                 .buttonStyle(HighlightButtonStyle())
                 .onAppear {
-                    if viewModel.searchText.isEmpty && robot.id == viewModel.filteredRobots.last?.id {
-                        viewModel.loadMoreRobots()
-                    }
+                    viewModel.onRowAppeared(robot)
                 }
             }
         }

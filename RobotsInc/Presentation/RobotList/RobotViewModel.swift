@@ -83,6 +83,15 @@ final class RobotViewModel {
         loadMoreRobots()
     }
 
+    /// Called by the view whenever a row becomes visible. The view model
+    /// decides if that means the next page should be loaded: only when
+    /// there is no active search and the visible row is the last one.
+    @MainActor
+    func onRowAppeared(_ robot: Robot) {
+        guard searchText.isEmpty, robot.id == filteredRobots.last?.id else { return }
+        loadMoreRobots()
+    }
+
     @MainActor
     func loadMoreRobots() {
         guard !isLoading && hasMoreData else { return }
