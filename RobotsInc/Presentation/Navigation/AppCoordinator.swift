@@ -1,5 +1,5 @@
 //
-//  RobotCoordinator.swift
+//  AppCoordinator.swift
 //  RobotsInc
 //
 //  Created by Miguel Cabrera on 01/05/2026.
@@ -8,7 +8,7 @@
 import SwiftUI
 
 @Observable
-final class RobotCoordinator {
+final class AppCoordinator {
 
     var path = NavigationPath()
 

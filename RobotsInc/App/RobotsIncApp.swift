@@ -27,7 +27,7 @@ struct RobotsInc: App {
             let session = URLSession(configuration: defaultSessionConfiguration())
             let repository = RobotRepository(dataSource: RobotRemoteDataSource(session: session))
 
-            RobotCoordinatorView(repository: repository)
+            AppCoordinatorView(repository: repository)
 
         }
         .onChange(of: scenePhase) { oldPhase, newPhase in

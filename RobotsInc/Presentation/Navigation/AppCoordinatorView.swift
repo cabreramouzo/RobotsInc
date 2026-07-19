@@ -1,5 +1,5 @@
 //
-//  RobotCoordinatorView.swift
+//  AppCoordinatorView.swift
 //  RobotsInc
 //
 //  Created by Miguel Cabrera on 01/05/2026.
@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct RobotCoordinatorView: View {
-    @State private var coordinator = RobotCoordinator()
+struct AppCoordinatorView: View {
+    @State private var coordinator = AppCoordinator()
     @State private var viewModel: RobotViewModel
 
     let repository: RobotRepositoryProtocol
