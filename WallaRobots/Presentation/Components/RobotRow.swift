@@ -40,9 +40,9 @@ private extension RobotRow {
         VStack(alignment: .leading) {
             Text(robot.fullName).font(.headline)
             Text(robot.email).font(.subheadline).foregroundColor(.gray)
-            Text("\(robot.price, specifier: "%.2f")€")
+            Text(robot.formattedPrice)
                 .font(.system(size: 18, weight: .bold))
-                .foregroundColor(Color(red: 0.07, green: 0.76, blue: 0.67))
+                .foregroundColor(Color.wallapopColor)
         }
     }
 

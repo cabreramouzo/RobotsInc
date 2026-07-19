@@ -33,7 +33,7 @@ extension RobotDTO {
             department: Department(rawValue: department) ?? .engineering,
             address: address,
             avatar: URL(string: avatar ?? ""),
-            price: Double.random(in: 1.0...1024.0),
+            price: Decimal(Int.random(in: 100...102_400)) / 100,
             status: [.new, .refurbished].randomElement() ?? .new
         )
     }

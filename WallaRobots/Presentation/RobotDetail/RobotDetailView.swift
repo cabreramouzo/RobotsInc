@@ -78,7 +78,7 @@ private extension RobotDetailView {
                 Text("Estimated price")
                     .font(.caption)
                     .foregroundColor(.gray)
-                Text("\(robot.price, specifier: "%.2f")€")
+                Text(robot.formattedPrice)
                     .font(.title2)
                     .bold()
                     .foregroundColor(Color.wallapopColor)

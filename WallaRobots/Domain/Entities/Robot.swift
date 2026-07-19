@@ -17,7 +17,7 @@ struct Robot: Identifiable, Hashable {
     let department: Department
     let address: String
     let avatar: URL?
-    let price: Double
+    let price: Decimal
     let status: RobotStatus
 
     var fullName: String { "\(firstName) \(lastName)" }
