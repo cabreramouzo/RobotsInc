@@ -1,10 +1,10 @@
-# 🤖 WallaRobots Challenge
+# 🤖 RobotsInc Challenge
 
 This App consist of a robot directory and detail viewer, focused on **high decoupling**, **architectural scalability**, and **optimized SwiftUI performance**.
 
  | App Icon | Dark Mode | 
  | :--: | :--: |
- | <img src="WallaRobots/Resources/Assets.xcassets/AppIcon.appiconset/WallaRobots-iOS-Default-1024x1024%401x.png" width="150" alt="App Icon"> | <img src="WallaRobots/Resources/Assets.xcassets/AppIcon.appiconset/WallaRobots-iOS-Dark-1024x1024%401x.png" width="150" alt="App Icon"> |
+ | <img src="RobotsInc/Resources/Assets.xcassets/AppIcon.appiconset/RobotsInc-iOS-Default-1024x1024%401x.png" width="150" alt="App Icon"> | <img src="RobotsInc/Resources/Assets.xcassets/AppIcon.appiconset/RobotsInc-iOS-Dark-1024x1024%401x.png" width="150" alt="App Icon"> |
 
 ---
 
@@ -39,8 +39,8 @@ Automated workflows via **GitHub Actions** ensure project stability on every `Pu
 * **SwiftLint Workflow:** Automated code style analysis to ensure contributions adhere to defined best practices and maintain a clean, uniform codebase.
 * **Unit & UI Testing Workflow:** Automated test execution on macOS 26 with Xcode 26.3. The workflow builds and runs tests on an iPhone 17 simulator, blocking merges if any test fails.
 
-![SwiftLint](https://github.com/cabreramouzo/WallaRobots/actions/workflows/swiftlint.yml/badge.svg)
-![iOS CI](https://github.com/cabreramouzo/WallaRobots/actions/workflows/build_test.yml/badge.svg)
+![SwiftLint](https://github.com/cabreramouzo/RobotsInc/actions/workflows/swiftlint.yml/badge.svg)
+![iOS CI](https://github.com/cabreramouzo/RobotsInc/actions/workflows/build_test.yml/badge.svg)
 
 ---
 
@@ -92,5 +92,5 @@ Configured GIT-LFS to optimize the size of the repository (snapshot images).
 
 ### Installation
 1. Clone the repository.
-2. Open `WallaRobots.xcodeproj`.
+2. Open `RobotsInc.xcodeproj`.
 3. Build and Run. Dependencies (Kingfisher) are managed automatically via Swift Package Manager.

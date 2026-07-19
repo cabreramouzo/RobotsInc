@@ -28,13 +28,13 @@ jobs:
         run: |
           # Run tests excluding snapshot tests as backup
           xcodebuild test \
-            -project WallaRobots.xcodeproj \
-            -scheme WallaRobots \
+            -project RobotsInc.xcodeproj \
+            -scheme RobotsInc \
             -destination 'platform=iOS Simulator,name=iPhone 17 Pro,OS=26.2' \
             -parallel-testing-enabled NO \
             -enableCodeCoverage YES \
             -resultBundlePath TestResults.xcresult \
-            -skip-testing:WallaRobotsTests/SnapshotTests \
+            -skip-testing:RobotsIncTests/SnapshotTests \
             clean build test
 
       - name: Upload failed snapshots

@@ -1,11 +1,11 @@
-# SwiftLint configuration for WallaRobots
+# SwiftLint configuration for RobotsInc
 # Documentation: https://github.com/realm/SwiftLint
 
 # Paths to include during linting. `--path` is ignored if present.
 included:
-  - WallaRobots/
-  - WallaRobotsTests/
-  - WallaRobotsUITests/
+  - RobotsInc/
+  - RobotsIncTests/
+  - RobotsIncUITests/
 
 # Paths to ignore during linting. Takes precedence over `included`.
 excluded:
