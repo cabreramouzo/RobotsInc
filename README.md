@@ -51,8 +51,6 @@ Automated workflows via **GitHub Actions** ensure project stability on every `Pu
 ## Git Strategy
 This project follows a branching model inspired by **Git Flow**.
 
-Configured GIT-LFS to optimize the size of the repository (snapshot images).
-
 *Branches have been intentionally preserved to showcase the incremental development process.*
 
 ---
