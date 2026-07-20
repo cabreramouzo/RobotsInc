@@ -24,7 +24,10 @@ final class RobotPaginationTests: XCTestCase {
         viewModel.loadMoreRobots()
 
         // THEN: Robot count should increase and page should increment
-        XCTAssertEqual(viewModel.filteredRobots.count, initialCount + 20, "The array should be increased by 20 elements")
+        XCTAssertEqual(
+            viewModel.filteredRobots.count, initialCount + 20,
+            "The array should be increased by 20 elements"
+        )
         XCTAssertEqual(viewModel.currentPage, 2, "Should be on page 2 after pagination")
     }
 
@@ -39,7 +42,10 @@ final class RobotPaginationTests: XCTestCase {
         viewModel.onRowAppeared(lastVisible)
 
         // THEN: The next page should be loaded
-        XCTAssertEqual(viewModel.filteredRobots.count, initialCount + 20, "Reaching the last row should load the next page")
+        XCTAssertEqual(
+            viewModel.filteredRobots.count, initialCount + 20,
+            "Reaching the last row should load the next page"
+        )
     }
 
     @MainActor
@@ -69,7 +75,10 @@ final class RobotPaginationTests: XCTestCase {
         viewModel.onRowAppeared(lastVisible)
 
         // THEN: No pagination should be triggered while searching
-        XCTAssertEqual(viewModel.currentPage, pageBeforeSearch, "Pagination should be disabled while a search is active")
+        XCTAssertEqual(
+            viewModel.currentPage, pageBeforeSearch,
+            "Pagination should be disabled while a search is active"
+        )
     }
 
     // MARK: - Helpers

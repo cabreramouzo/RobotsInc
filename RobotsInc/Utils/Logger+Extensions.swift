@@ -8,9 +8,10 @@
 import OSLog
 
 extension Logger {
-    private static var subsystem = Bundle.main.bundleIdentifier!
-    static let viewCycle = Logger(subsystem: subsystem, category: "viewcycle")
-    static let network = Logger(subsystem: subsystem, category: "network")
-    static let decoding = Logger(subsystem: subsystem, category: "decoding")
-    static let unknown = Logger(subsystem: subsystem, category: "unknown")
+    nonisolated private static let subsystem = Bundle.main.bundleIdentifier!
+    nonisolated static let viewCycle = Logger(subsystem: subsystem, category: "viewcycle")
+    nonisolated static let network = Logger(subsystem: subsystem, category: "network")
+    nonisolated static let decoding = Logger(subsystem: subsystem, category: "decoding")
+    nonisolated static let unknown = Logger(subsystem: subsystem, category: "unknown")
+    nonisolated static let storage = Logger(subsystem: subsystem, category: "storage")
 }
