@@ -33,8 +33,9 @@ extension RobotDTO {
             department: Department(rawValue: department) ?? .engineering,
             address: address,
             avatar: URL(string: avatar ?? ""),
-            price: Decimal(Int.random(in: 100...102_400)) / 100,
-            status: [.new, .refurbished].randomElement() ?? .new
+            // The dataset has no price, no status, so we generate them
+            price: Decimal(id % 1000) + 0.99,
+            status: id.isMultiple(of: 2) ? .new : .refurbished
         )
     }
 }
