@@ -23,8 +23,8 @@ struct RobotsIncTests {
         await viewModel.initialLoad()
 
         // THEN: Robots array should be populated with first page
-        #expect(!viewModel.robots.isEmpty, "Robots array should not be empty after initial load")
-        #expect(viewModel.robots.count == 20, "Should load first pagination slice of 20 robots")
+        #expect(!viewModel.filteredRobots.isEmpty, "Robots array should not be empty after initial load")
+        #expect(viewModel.filteredRobots.count == 20, "Should load first pagination slice of 20 robots")
     }
 
     @Test("Test initial load success with mocked data source")
@@ -40,7 +40,7 @@ struct RobotsIncTests {
 
         // THEN: Data source should be called and robots should be loaded
         #expect(mockDataSource.fetchCalled, "Mock data source should have been called")
-        #expect(viewModel.robots.count == 20, "Should load first page of 20 robots")
+        #expect(viewModel.filteredRobots.count == 20, "Should load first page of 20 robots")
     }
 
     @Test("Test initial load failure shows error message")
@@ -55,7 +55,7 @@ struct RobotsIncTests {
         await viewModel.initialLoad()
 
         // THEN: Robots array should remain empty and the network error should be surfaced
-        #expect(viewModel.robots.isEmpty, "Robots array should remain empty when load fails")
+        #expect(viewModel.filteredRobots.isEmpty, "Robots array should remain empty when load fails")
         #expect(viewModel.error == .network, "A network data source error should map to the .network repository error")
         #expect(viewModel.errorViewData != nil, "The view model should expose error data to display")
     }
@@ -72,7 +72,7 @@ struct RobotsIncTests {
         await viewModel.initialLoad()
 
         // THEN: First robot should have expected details
-        let firstRobot = try #require(viewModel.robots.first, "Should have at least one robot loaded")
+        let firstRobot = try #require(viewModel.filteredRobots.first, "Should have at least one robot loaded")
         #expect(firstRobot.fullName == "Hadley Eyres", "First robot should be Hadley Eyres")
     }
 }

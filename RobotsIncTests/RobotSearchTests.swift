@@ -19,7 +19,7 @@ final class RobotSearchTests: XCTestCase {
 
         await viewModel.initialLoad()
 
-        let initialCount = viewModel.robots.count
+        let initialCount = viewModel.filteredRobots.count
         XCTAssertGreaterThan(initialCount, 0, "Should have robots loaded")
 
         // WHEN: User searches for a specific name
@@ -44,7 +44,7 @@ final class RobotSearchTests: XCTestCase {
 
         await viewModel.initialLoad()
 
-        let initialCount = viewModel.robots.count
+        let initialCount = viewModel.filteredRobots.count
 
         // WHEN: Search text is empty
         viewModel.searchText = ""

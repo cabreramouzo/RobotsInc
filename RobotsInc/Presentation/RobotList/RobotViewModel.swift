@@ -12,15 +12,20 @@ import OSLog
 final class RobotViewModel {
 
     // MARK: - Public properties
-    var robots: [Robot] = []
     var searchText: String = ""
-    var debouncedSearchText: String = ""
+    var debouncedSearchText: String = "" {
+        didSet {
+            applyFilter()
+        }
+    }
     private(set) var isLoading: Bool = false
     private(set) var error: RobotRepositoryError?
     private(set) var currentPage = 0
 
     // MARK: - Private properties
+    private var robots: [Robot] = []
     private var allRobots: [Robot] = []
+    private(set) var filteredRobots: [Robot] = []
     private let repository: RobotRepositoryProtocol
     private let pageSize = 20
 
@@ -28,15 +33,18 @@ final class RobotViewModel {
         self.repository = repository
     }
 
-    var filteredRobots: [Robot] {
-        if debouncedSearchText.isEmpty { return robots }
-
-        return allRobots.filter {
-            $0.fullName.localizedCaseInsensitiveContains(debouncedSearchText) ||
-            $0.username.localizedCaseInsensitiveContains(debouncedSearchText) ||
-            $0.email.localizedCaseInsensitiveContains(debouncedSearchText)
+    private func applyFilter() {
+        if debouncedSearchText.isEmpty {
+                filteredRobots = robots
+        } else {
+            filteredRobots = allRobots.filter {
+                $0.fullName.localizedCaseInsensitiveContains(debouncedSearchText) ||
+                $0.username.localizedCaseInsensitiveContains(debouncedSearchText) ||
+                $0.email.localizedCaseInsensitiveContains(debouncedSearchText)
+            }
         }
     }
+
 
     var hasMoreData: Bool {
         return debouncedSearchText.isEmpty && currentPage * pageSize < allRobots.count
@@ -85,6 +93,9 @@ final class RobotViewModel {
 
         let newSlice = allRobots[start..<end]
         robots.append(contentsOf: newSlice)
+        // filteredRobots mirrors robots when there's no search, so each new
+        // page must be re-applied for the list to reflect it.
+        applyFilter()
 
         currentPage += 1
         isLoading = false

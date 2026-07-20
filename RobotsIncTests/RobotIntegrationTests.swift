@@ -24,11 +24,11 @@ struct RobotIntegrationTests {
         // ============================================
         await viewModel.initialLoad()
         
-        #expect(viewModel.robots.count == 20, "Initial load should fetch first page (20 robots)")
+        #expect(viewModel.filteredRobots.count == 20, "Initial load should fetch first page (20 robots)")
         #expect(viewModel.currentPage == 1, "Should be on page 1 after initial load")
         #expect(viewModel.hasMoreData, "Should have more data to load")
         
-        let firstRobot = try #require(viewModel.robots.first)
+        let firstRobot = try #require(viewModel.filteredRobots.first)
         #expect(firstRobot.fullName == "Hadley Eyres", "First robot should be Hadley Eyres")
         
         // ============================================
@@ -36,10 +36,10 @@ struct RobotIntegrationTests {
         // ============================================
         viewModel.loadMoreRobots()
         
-        #expect(viewModel.robots.count == 40, "After pagination should have 40 robots")
+        #expect(viewModel.filteredRobots.count == 40, "After pagination should have 40 robots")
         #expect(viewModel.currentPage == 2, "Should be on page 2 after pagination")
         
-        let robot21 = viewModel.robots[20]
+        let robot21 = viewModel.filteredRobots[20]
         #expect(robot21.id != firstRobot.id, "Robot at index 20 should be different from first robot")
         
         // ============================================
@@ -57,7 +57,7 @@ struct RobotIntegrationTests {
             $0.email.localizedCaseInsensitiveContains(searchTerm)
         }, "All filtered results should match search term")
         
-        #expect(viewModel.robots.count == 40, "Paginated robots should still be 40")
+        #expect(viewModel.currentPage == 2, "Pagination state should be preserved during search")
         
         // ============================================
         // STEP 4: Clear search (should restore all paginated robots)
@@ -92,7 +92,7 @@ struct RobotIntegrationTests {
         
         // THEN: All robots should be loaded
         let totalMockRobots = FakeRobotDataSource.loadMockDTOs().count
-        #expect(viewModel.robots.count == totalMockRobots, "Should have loaded all available robots")
+        #expect(viewModel.filteredRobots.count == totalMockRobots, "Should have loaded all available robots")
         #expect(!viewModel.hasMoreData, "Should have no more data to load")
     }
     
@@ -109,7 +109,7 @@ struct RobotIntegrationTests {
         await viewModel.initialLoad()
         viewModel.loadMoreRobots()
         
-        let robotsBeforeSearch = viewModel.robots.count
+        let robotsBeforeSearch = viewModel.filteredRobots.count
         let pageBeforeSearch = viewModel.currentPage
         
         // WHEN: Search and then clear
@@ -119,7 +119,7 @@ struct RobotIntegrationTests {
         viewModel.debouncedSearchText = ""
         
         // THEN: Pagination state should be preserved
-        #expect(viewModel.robots.count == robotsBeforeSearch, "Robot count should be preserved")
+        #expect(viewModel.filteredRobots.count == robotsBeforeSearch, "Robot count should be preserved")
         #expect(viewModel.currentPage == pageBeforeSearch, "Current page should be preserved")
     }
     
@@ -137,7 +137,7 @@ struct RobotIntegrationTests {
         viewModel.debouncedSearchText = "Hadley"
         
         // THEN: State should be consistent
-        #expect(!viewModel.robots.isEmpty, "Robots should be loaded")
+        #expect(viewModel.currentPage == 1, "Initial page should be loaded")
         #expect(!viewModel.filteredRobots.isEmpty, "Filtered results should exist")
         #expect(viewModel.filteredRobots.allSatisfy {
             $0.fullName.localizedCaseInsensitiveContains("Hadley")
@@ -155,7 +155,7 @@ struct RobotIntegrationTests {
         await viewModel.initialLoad()
         viewModel.loadMoreRobots()
         
-        let totalLoadedRobots = viewModel.robots.count
+        let totalLoadedRobots = viewModel.filteredRobots.count
         
         // WHEN: User types search, then deletes it character by character
         viewModel.debouncedSearchText = "Had"
