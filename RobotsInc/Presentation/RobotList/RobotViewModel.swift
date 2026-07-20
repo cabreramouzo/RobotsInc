@@ -45,7 +45,6 @@ final class RobotViewModel {
         }
     }
 
-
     var hasMoreData: Bool {
         return debouncedSearchText.isEmpty && currentPage * pageSize < allRobots.count
     }

@@ -25,10 +25,12 @@ struct RobotsInc: App {
     var body: some Scene {
         WindowGroup {
             let session = URLSession(configuration: defaultSessionConfiguration())
-            let repository = RobotRepository(dataSource: RobotRemoteDataSource(session: session))
+            let repository = RobotRepository(
+                dataSource: RobotRemoteDataSource(session: session),
+                localDataSource: RobotFileDataSource()
+            )
 
             AppCoordinatorView(repository: repository)
-
         }
         .onChange(of: scenePhase) { oldPhase, newPhase in
             if newPhase == .background {

@@ -65,7 +65,7 @@ final class RobotRemoteDataSourceTests: XCTestCase {
     func testFetchThrowsOnInvalidJSON() async throws {
         // GIVEN: An invalid JSON response
         var fakeSession = FakeURLSession()
-        fakeSession.mockData = "invalid json".data(using: .utf8)!
+        fakeSession.mockData = Data("invalid json".utf8)
         fakeSession.mockStatusCode = 200
         let dataSource = RobotRemoteDataSource(session: fakeSession)
 

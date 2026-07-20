@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct RobotDTO: Decodable {
+struct RobotDTO: Codable {
     let id: Int
     let username: String
     let first_name: String
