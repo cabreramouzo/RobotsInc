@@ -16,11 +16,15 @@ The app follows **Clean Architecture** principles with **MVVM** in the Presentat
 - **Data Layer** — `RobotDTO`, `RobotRemoteDataSource`, and `RobotRepository` which maps DTOs to domain entities. Only depends on Domain protocols.
 - **Presentation Layer** — `RobotViewModel`, SwiftUI Views, and a **Coordinator** pattern for navigation. Only depends on Domain entities and protocols.
 
-Navigation is handled by a `RobotCoordinator` using `NavigationPath` and a typed `Destination` enum, ensuring scalable and decoupled navigation. Views receive dependencies via explicit parameters and closures instead of `@EnvironmentObject`, preserving separation of concerns.
+Navigation is handled by an `AppCoordinator` that owns the root `NavigationPath` and a typed `Destination` enum. Destinations carry **identity, not entities** (`Destination.detail(robotID:)`): the detail screen resolves its robot by id through the repository. This keeps the path serializable, avoids stale snapshots, and lets deep links (`robotsinc://robot/<id>`) open any screen — even on a cold start — reusing the exact same navigation route as a tap in the list. Views receive dependencies via explicit parameters and closures instead of `@EnvironmentObject`, preserving separation of concerns and testability.
+
+**Error handling** mirrors the data flow: each layer translates failures into a vocabulary it owns instead of leaking transport types upwards. `RobotRemoteDataSource` maps `URLError`, non-200 responses and decoding failures into a semantic `RobotDataSourceError`; `RobotRepository` maps those into a domain-facing `RobotRepositoryError`; and the ViewModel turns that into user-facing copy (`ErrorViewData`) consumed by a generic `ErrorView`. Swift 6 **typed throws** (`throws(RobotRepositoryError)`) make the error contract explicit and the `switch` exhaustive at every boundary. This is deliberately more structure than a single-source app needs — I kept it to illustrate the boundary discipline that starts paying off once caching, multiple data sources or retry policies multiply the error space.
 
 To demonstrate versatility, I used a hybrid image loading strategy: Kingfisher for the main list (leveraging its robust caching) and AsyncImage for the detail view.
 
 Finally, I leveraged Swift 6 concurrency features to ensure thread safety and a responsive UI, along with a debounce strategy to optimize search performance.
+
+> **A note on pagination:** pagination is currently **client-side** — `fetch()` downloads the full dataset once and the ViewModel serves it in local slices of 20. This keeps the demo self-contained, but it doesn't scale: at large datasets the first bottleneck is the initial fetch and decode, not the UI. The real fix starts at the contract (`fetch(page:pageSize:)` on the repository, with server-side paging), which the current layering keeps as a localized change.
 
 ---
 
