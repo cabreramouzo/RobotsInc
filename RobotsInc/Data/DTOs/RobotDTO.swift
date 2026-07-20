@@ -10,13 +10,19 @@ import Foundation
 struct RobotDTO: Codable {
     let id: Int
     let username: String
-    let first_name: String
-    let last_name: String
+    let firstName: String
+    let lastName: String
     let gender: String
     let email: String
     let department: String
     let address: String
     let avatar: String?
+
+    enum CodingKeys: String, CodingKey {
+        case id, username, gender, email, department, address, avatar
+        case firstName = "first_name"
+        case lastName = "last_name"
+    }
 }
 
 // MARK: - Mappers
@@ -26,8 +32,8 @@ extension RobotDTO {
         Robot(
             id: id,
             username: username,
-            firstName: first_name,
-            lastName: last_name,
+            firstName: firstName,
+            lastName: lastName,
             gender: Gender(rawValue: gender) ?? .male,
             email: email,
             department: Department(rawValue: department) ?? .engineering,

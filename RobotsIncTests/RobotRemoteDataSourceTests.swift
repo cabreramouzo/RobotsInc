@@ -24,8 +24,8 @@ final class RobotRemoteDataSourceTests: XCTestCase {
         // THEN: The robots are decoded correctly
         XCTAssertFalse(robots.isEmpty, "Should return robots from valid JSON")
         XCTAssertEqual(robots.first?.username, "heyres0")
-        XCTAssertEqual(robots.first?.first_name, "Hadley")
-        XCTAssertEqual(robots.first?.last_name, "Eyres")
+        XCTAssertEqual(robots.first?.firstName, "Hadley")
+        XCTAssertEqual(robots.first?.lastName, "Eyres")
     }
 
     func testFetchThrowsOnBadStatusCode() async throws {
